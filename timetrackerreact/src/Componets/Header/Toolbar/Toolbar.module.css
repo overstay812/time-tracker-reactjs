@@ -1,0 +1,8 @@
+.toolbar {
+  display: flex;
+  align-items: center;
+  margin-right: 60px;
+}
+.link {
+  margin-left: 47px;
+}

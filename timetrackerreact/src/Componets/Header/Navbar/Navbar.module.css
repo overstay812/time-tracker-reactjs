@@ -1,0 +1,18 @@
+.navbar {
+  margin-left: 90px;
+}
+.link {
+  padding: 34px 15px;
+  color: #ffffff;
+  text-decoration: none;
+  margin-right: 45px;
+
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 144.2%;
+}
+.activeLink {
+  border-bottom: 3px solid #ffffff;
+}
