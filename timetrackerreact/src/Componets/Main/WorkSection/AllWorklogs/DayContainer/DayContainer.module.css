@@ -1,0 +1,63 @@
+.dayContainer {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  justify-content: flex-start;
+  align-items: flex-start;
+  margin-top: 50px;
+}
+.dataAndFulltime {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  border-bottom: 1px solid #e9ecf2;
+  padding-bottom: 25px;
+}
+.fullTimeProgress {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-right: 47px;
+}
+.wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+}
+.data {
+  margin-left: 24px;
+  font-family: Roboto;
+  font-style: normal;
+  font-size: 24px;
+  line-height: 144.2%;
+}
+.time {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 24px;
+  line-height: 144.2%;
+  color: #bbbbbb;
+}
+.meter {
+  width: 100px;
+  height: 15px;
+}
+.button {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    vertical-align: top;
+    height: 38px;
+    width: 38px;
+    border-radius: 50%;
+    border: none;
+    margin-right:50px;
+    background: #e9ecf2;
+}

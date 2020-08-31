@@ -1,0 +1,7 @@
+.allWorklogs {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    justify-content: flex-start;
+    align-items: start;
+}
