@@ -3,6 +3,7 @@ import styles from './DayContainer.module.css'
 import dowload from './direct-download 1.svg'
 import { Issue } from './Issule/Issule'
 import { connect } from 'react-redux'
+import { TimeLineBar } from './TimeLineBar/TimeLineBar'
 
 
  const DayContainer = ({worklogData}) => {
@@ -23,9 +24,11 @@ import { connect } from 'react-redux'
             </div>
             
             {
-             worklogData.map(item => <Issue beginTime={item.beginTime} finishTime={item.finishTime} label={item.label} info={item.info}/>)
+             worklogData.map(item => <Issue beginTime={item.beginTime} finishTime={item.finishTime} issue={item.issue} title={item.title}/>)
             }
             
+            <TimeLineBar/>
+
         </div>
     )
 }

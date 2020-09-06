@@ -3,9 +3,10 @@ import styles from './AllWorklogs.module.css'
 import  DayContainer  from './DayContainer/DayContainer'
 
 
-export const AllWorklogs = (props) => {
+export const AllWorklogs = ({state}) => {
+
     return (
-        <div className={styles.allWorklogs}>
+        <div className={state? styles.allWorklogs: styles.hide }>
             <DayContainer />     
         </div>
     )

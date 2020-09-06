@@ -4,6 +4,8 @@
   justify-content: flex-start;
   width: 100%;
   border-bottom: 1px solid #e9ecf2;
+  height: 100vh;
+  position: relative;
 }
 .wrapper {
   display: flex;

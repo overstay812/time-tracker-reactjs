@@ -4,6 +4,8 @@ import { WorkSection } from './WorkSection/WorkSection'
 import { InfoSection } from './InfoSection/InfoSection'
 
 export const Main = (props) => {
+
+    
     return (
         <div className={styles.main}>
             <WorkSection />

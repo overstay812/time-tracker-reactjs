@@ -1,8 +1,8 @@
 import React from 'react'
 import styles from './FavoritesWorklogs.module.css'
 
-export const FavoritesWorklogs = () => { 
+export const FavoritesWorklogs = ({ state }) => {
     return (
-        <div></div>
+        <div className={state ? styles.hide : styles.favoritesWorklogs}>hello</div>
     )
 }

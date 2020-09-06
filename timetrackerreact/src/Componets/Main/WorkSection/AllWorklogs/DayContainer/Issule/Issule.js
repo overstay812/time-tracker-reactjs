@@ -12,8 +12,8 @@ export const Issue = (props) => {
     <span className={styles.timeFinish}> -  {props.finishTime}</span>
                 </div>
                 <div className={styles.info}>
-                    <span className={styles.label}>{props.label}</span>
-                    <span className={styles.title}>{props.info} </span>
+                    <span className={styles.label}>{props.issue}</span>
+                    <span className={styles.title}>{props.title} </span>
                 </div>
                 <meter className={styles.meter} min="0" max="100" low="30" high="70" optimum="80" value="0">
                 </meter>

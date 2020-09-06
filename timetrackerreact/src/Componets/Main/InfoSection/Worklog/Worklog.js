@@ -1,9 +1,69 @@
 import React from 'react'
 import styles from './Worklog.module.css'
 import more from './more-horizontal.svg'
-import { CreateScreen } from './CreateScreen/CreateScreen'
+import CreateScreen from './CreateScreen/CreateScreen'
+import NewWorklog from './NewWorklog/NewWorklog'
+import { useState } from 'react'
+import { connect } from 'react-redux'
+import { start } from '../../../redux/actions'
 
-export const Worklog = (props) => {
+let sec
+let min
+let hr
+
+const Worklog = ({ state, start }) => {
+    // toggle between createscreen and newworklog
+    const [showWorklog, setShowWorklog] = useState(false)
+
+    const toggleWorklog = () => {
+        setShowWorklog(!showWorklog)
+    }
+    //
+
+    // start new worklog
+    let second = state.second;
+    let minute = state.minute;
+    let hour = state.hour;
+
+
+    let runWorklog = () => {
+
+        sec = setInterval(() => {
+            second++
+            if (second > 59) {
+                second = 0
+            }
+            start(second, minute, hour)
+        }, 1000);
+
+        min = setInterval(() => {
+            minute++
+            if (minute > 60) {
+                minute = 0
+            }
+            start(second, minute, hour)
+        }, 60000);
+        hr = setInterval(() => {
+            hour++
+            if (hour > 4) {
+                // HERE WILL BE AUTOSTOP WORKLOG CONDITION
+            }
+        }, 3600000);
+
+    }
+
+    let pauseWorklog = () => {
+        clearInterval(sec)
+        clearInterval(min)
+        clearInterval(hr)
+
+    }
+
+    const [showPopupWorklog, setShowPopupWorklog] = useState(false)
+    let popupToggle = () => { setShowPopupWorklog(!showPopupWorklog) }
+
+
+    
     return (
         <div className={styles.worklog}>
             <div className={styles.wrapper}>
@@ -17,10 +77,33 @@ export const Worklog = (props) => {
                     <a href="#" className={styles.link} >Delete</a>
                 </div>
             </div>
-              {/* worklog container */}
+            {/* worklog container */}
             <div className={styles.container}>
-                <CreateScreen/>
+                <CreateScreen toggleWorklog={toggleWorklog}
+                    runWorklog={runWorklog}
+                    showPopupWorklog={showPopupWorklog}
+                    popupToggle={popupToggle}
+                    toggleWorklog={toggleWorklog}
+                    />
+                <NewWorklog
+                    showWorklog={showWorklog}
+                    
+                    pauseWorklog={pauseWorklog}
+                    runWorklog={runWorklog}
+                    popupToggle={popupToggle}
+                />
             </div>
         </div>
     )
 }
+const mapStateToPRops = state => {
+    return {
+        state: state.worklogReducer.newWorklog,
+
+    }
+}
+
+const mapDispatchToProps = {
+    start
+}
+export default connect(mapStateToPRops, mapDispatchToProps)(Worklog)

@@ -1,17 +1,30 @@
 import React from 'react'
 import styles from './TopButtons.module.css'
-import { ButtonData } from './ButtonData/ButtonData'
-import { ButtonAll } from './ButtonAll/ButtonAll'
-import { ButtonFavorite } from './ButtonFavorite/ButtonFavorite'
+import vector from './Vector.svg'
 
-export const TopButtons = (props) => {
+export const TopButtons = ({ toggle, state }) => {
+
+    let btnHandlerAll = () => state ? null : toggle()
+
+    let btnHandlerFavorites = () => !state ? null : toggle()
+
     return (
         <div className={styles.topButtons}>
-            <ButtonData />
+
+            <button className={styles.buttonCalendar}>
+                10 JUNE 2020
+                 <img src={vector} className={styles.icon} alt="calendar" />
+            </button>
+
             <div className={styles.wrapper}>
-                <ButtonAll />
-                <ButtonFavorite />
+                <button className={styles.buttonAll} onClick={() => btnHandlerAll()}>
+                    All
+                </button>
+                <button className={styles.buttonFavorites} onClick={() => btnHandlerFavorites()}>
+                    Favorites
+                </button>
             </div>
+            
         </div>
     )
 }

@@ -3,14 +3,23 @@ import styles from './WorkSection.module.css'
 import { TopButtons } from './TopButtons/TopButtons'
 import { AllWorklogs } from './AllWorklogs/AllWorklogs'
 import { FavoritesWorklogs } from './FavoritesWorklogs/FavoritesWorklogs'
+import { useState } from 'react'
 
 export const WorkSection = (props) => {
+const [state, setState] = useState(true)
+
+const toggleShowScreen = () => { 
+
+setState(!state)
+
+}
+
     return (
         <div className={styles.workSection}>
             <div className={styles.wrapper}>
-                <TopButtons />
-                <AllWorklogs/>
-                <FavoritesWorklogs />
+                <TopButtons toggle={toggleShowScreen} state={state}/>
+                <AllWorklogs state={state}/>
+                <FavoritesWorklogs state={state}/>
             </div>
         </div>
     )
