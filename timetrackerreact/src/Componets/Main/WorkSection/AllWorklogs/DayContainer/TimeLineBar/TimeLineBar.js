@@ -1,10 +1,15 @@
 import React from 'react'
 import styles from './TimeLineBar.module.css'
+import { connect } from 'react-redux'
+import CurrentWorklogBar from './CurrentWorklogBar.js/CurrentWorklogBar'
 
-export const TimeLineBar = () => {
+ const TimeLineBar = ({state}) => {
+     
     return (
         <div className={styles.wrapper}>
-            <div className={styles.timeBar}></div>
+            <div className={styles.timeBar}>
+                {state.worklog.map(item => <CurrentWorklogBar beginTimeHour={item.beginTimeHour}/>)}
+            </div>
 
             <div className={styles.time}>
                         <span className={styles.currentTime}>07:00</span>
@@ -24,3 +29,11 @@ export const TimeLineBar = () => {
         </div>
     )
 }
+
+const mapStateToProps = state => { 
+    return {
+        state: state.worklogReducer
+    }
+}
+
+export default connect(mapStateToProps,null)(TimeLineBar)

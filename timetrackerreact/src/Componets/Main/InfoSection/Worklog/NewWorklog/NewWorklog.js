@@ -7,14 +7,14 @@ import { getTitleName, getIssueName } from '../../../../redux/actions'
 import { useEffect } from 'react'
 
 
-const NewWorklog = ({ showWorklog,state, state2, getTitleName, getIssueName, pauseWorklog, runWorklog, popupToggle}) => {
+const NewWorklog = ({ showWorklog, state, state2, getTitleName, getIssueName, pauseWorklog, runWorklog, popupToggle }) => {
 
     const [toggleStartPause, setToggleStartPause] = useState(true)
 
-    const [title, setTitle] = useState(state2.title.title)
-    const [issue, setIssue] = useState(state2.issue.issue)
+    const [title, setTitle] = useState(state2.title)
+    const [issue, setIssue] = useState(state2.issue)
 
-//  can't use one useEffect because the functions update value each other 
+    //  can't use one useEffect because the functions update value each other 
     useEffect(() => {
         getTitleName(title)
     }, [title]
@@ -27,10 +27,12 @@ const NewWorklog = ({ showWorklog,state, state2, getTitleName, getIssueName, pau
     return (
         <div className={showWorklog ? styles.wrapper : styles.hide}>
 
-            <input type="text" className={styles.title} value={state2.title.title} placeholder="Add title" onChange={event => setTitle(event.target.value)} />
-            <input type="text" className={styles.addIssue} value={state2.issue.issue} placeholder="Add issue" onChange={event => setIssue(event.target.value)} />
+            <input type="text" className={styles.title} value={state2.title} placeholder="Add title" onChange={event => setTitle(event.target.value)} />
+            <input type="text" className={styles.addIssue} value={state2.issue} placeholder="Add issue" onChange={event => setIssue(event.target.value)} />
 
-            <span className={styles.time}>{state.hour}:{state.minute}:{state.second}</span>
+            <span className={styles.time}>
+                {state.hour < 10? '0' + state.hour : state.hour}:{state.minute < 10 ? '0' + state.minute : state.minute}:{state.second < 10 ? '0' + state.second : state.second}
+            </span>
             <div className={styles.btnWrapper}>
                 <button className={styles.btnStop} onClick={() => {
                     pauseWorklog()

@@ -10,20 +10,21 @@ const initialState = {
     ],
 
     newWorklog: {
-        beginTime: '00:00',
-        finishTime: '00:00',
+        // beginTime: '00:00',
+        // finishTime: '00:00',
         second: 0,
         minute: 0,
         hour: 0
     },
-    issue: {
-        issue: '',
-    },
-    title: {
-        title: '',
-    }
-}
+    issue: '',
+    title: '',
+    beginTimeHour: null,
+    beginTimeMinute: null,
+    finishTimeHour: null,
+    finishTimeMinute: null
 
+
+}
 
 export const worklogReducer = (state = initialState, action) => {
     switch (action.type) {
@@ -43,26 +44,44 @@ export const worklogReducer = (state = initialState, action) => {
                     second: action.payload.second,
                     minute: action.payload.minute,
                     hour: action.payload.hour,
-                    beginTime: '13:00',
-                    finishTime: '14:00',
-                    title: state.title.title,
-                    issue: state.issue.issue
+                    beginTime: `${state.beginTimeHour}:${state.beginTimeMinute}`,
+                    finishTime: `${state.finishTimeHour}:${state.finishTimeMinute}`,
+                    title: state.title,
+                    issue: state.issue,
+                    beginTimeHour: state.beginTimeHour,
+                    beginTimeMinute: state.beginTimeMinute,
+                    finishTimeHour: state.finishTimeHour,
+                    finishTimeMinute: state.finishTimeMinute,
                 }
             }
         case 'STOP':
-            return { ...state, worklog: state.worklog.concat([state.newWorklog]) 
+            return {
+                ...state, worklog: state.worklog.concat([state.newWorklog])
             }
         case 'GET_TITLE':
             return {
-                ...state, title: {
-                    title: action.payload.title
-                }
+                ...state, title: action.payload.title
             }
         case 'GET_ISSUE':
             return {
-                ...state, issue: {
-                    issue: action.payload.issue
-                }
+                ...state,issue: action.payload.issue
+            }
+        case 'GET_BEGIN_TIME_HOUR':
+            return {
+                ...state, beginTimeHour: action.payload.beginTimeHour
+            }
+        case 'GET_BEGIN_TIME_MINUTE':
+            return {
+                ...state, beginTimeMinute: action.payload.beginTimeMinute
+            }
+        case 'GET_FINISH_TIME_HOUR':
+            return {
+                ...state, finishTimeHour: action.payload.finishTimeHour
+            }
+        case 'GET_FINISH_TIME_MINUTE':
+            return {
+                ...state, finishTimeMinute: action.payload.finishTimeMinute
+
             }
 
         default: return state

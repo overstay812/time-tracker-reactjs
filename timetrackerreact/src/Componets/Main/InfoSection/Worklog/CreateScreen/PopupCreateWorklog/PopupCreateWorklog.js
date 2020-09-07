@@ -3,16 +3,28 @@ import styles from './PopupCreateWorklog.module.css'
 import apply from './Vector (Stroke).svg'
 import cancel from './x.svg'
 import { connect } from 'react-redux'
-import { addWorklogInArray, getTitleName, getIssueName, start, resetTimer } from '../../../../../redux/actions'
+import { addWorklogInArray, getTitleName, getIssueName, start, resetTimer, finishTimeHour, finishTimeMinute } from '../../../../../redux/actions'
 import { useState } from 'react'
 import { useEffect } from 'react'
 
 
 
-const PopupCreateWorklog = ({ showPopupWorklog, addWorklogInArray, toggleWorklog,runWorklog, getTitleName, getIssueName, start, popupToggle, state, resetTimer }) => {
+const PopupCreateWorklog = ({ showPopupWorklog,
+    addWorklogInArray,
+    toggleWorklog,
+    runWorklog,
+    getTitleName,
+    getIssueName,
+    start,
+    popupToggle,
+    state,
+    resetTimer,
+    finishTimeHour,
+    finishTimeMinute
+}) => {
 
-    let [title, setTitle] = useState(state.title.title)
-    let [issue, setIssue] = useState(state.issue.issue)
+    let [title, setTitle] = useState(state.title)
+    let [issue, setIssue] = useState(state.issue)
 
 
     useEffect(() => {
@@ -27,6 +39,7 @@ const PopupCreateWorklog = ({ showPopupWorklog, addWorklogInArray, toggleWorklog
     let minute = state.newWorklog.minute;
     let hour = state.newWorklog.hour;
 
+    let currentDate = new Date()
     return (
         // wrapperHide display none default
         <div className={showPopupWorklog ? styles.wrapperShow : styles.wrapperHide}>
@@ -43,7 +56,7 @@ const PopupCreateWorklog = ({ showPopupWorklog, addWorklogInArray, toggleWorklog
                     <div className={styles.nameWrapper}>
                         <label className={styles.nameLabel} for="wrk-input-name">Worklog name*</label>
                         <input type="text"
-                            value={state.title.title}
+                            value={state.title}
                             id="wrk-input-name"
                             className={styles.nameInput}
                             placeholder="Enter the worklog name"
@@ -58,7 +71,7 @@ const PopupCreateWorklog = ({ showPopupWorklog, addWorklogInArray, toggleWorklog
                             className={styles.infoInput}
                             placeholder="Enter the issue name"
                             onChange={event => setIssue(event.target.value)}
-                            value={state.issue.issue}
+                            value={state.issue}
                         />
                     </div>
 
@@ -66,23 +79,25 @@ const PopupCreateWorklog = ({ showPopupWorklog, addWorklogInArray, toggleWorklog
                 <div className={styles.footer}>
                     <button className={styles.apply} onClick={() => {
                         // 'start fro update title and issue in reducer'
-                        if (state.title.title === '') {
+                        if (state.title === '') {
                             alert('stop!')
                             return
                         }
-                        if (issue === '') {
+                        if (state.issue === '') {
                             getIssueName('Enter the issue name')
                         }
+                        finishTimeHour(currentDate < 10 ? '0' + currentDate.getHours() : currentDate.getHours())
+                        finishTimeMinute(currentDate < 10 ? '0' + currentDate.getMinutes() : currentDate.getMinutes())
                         start(second, minute, hour)
                         addWorklogInArray()
                         toggleWorklog()
                         resetTimer()
                         popupToggle()
                     }} ><img src={apply} alt="Apply button" /></button>
-                    <button className={styles.cancel} onClick={()=> {
+                    <button className={styles.cancel} onClick={() => {
                         popupToggle()
                         runWorklog()
-                        }}><img src={cancel} alt="Cancel button" /></button>
+                    }}><img src={cancel} alt="Cancel button" /></button>
                 </div>
             </div>
         </div>
@@ -100,6 +115,9 @@ const mapDispatchToProps = {
     getIssueName,
     addWorklogInArray,
     start,
-    resetTimer
+    resetTimer,
+    finishTimeHour,
+    finishTimeMinute,
+
 }
 export default connect(mapStateToPRops, mapDispatchToProps)(PopupCreateWorklog)

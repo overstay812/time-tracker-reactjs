@@ -36,16 +36,44 @@ export const addWorklogInArray = () => {
  
  export const resetTimer = () => {
      return {
-         type:'RESET_TIMER'}
+         type:'RESET_TIMER'
+        }
   }
  
-//   export const addIssueAndTitle = (issue, title) => {
-    
-//     return {
-//         type: 'ADD_ISSUE_AND_TITLE',
-//         payload: {
-//             issue,
-//             title    
-//         }
-//     }
-// }
+export const beginTimeHour = beginTimeHour => {
+    return {
+        type: 'GET_BEGIN_TIME_HOUR',
+        payload: {
+            beginTimeHour
+        }
+    }
+ }
+
+ export const beginTimeMinute = beginTimeMinute => { 
+     return {
+         type: 'GET_BEGIN_TIME_MINUTE',
+         payload: {
+            beginTimeMinute
+         }
+     }
+ }
+
+ export const finishTimeHour = finishTimeHour => { 
+     return{
+         type: 'GET_FINISH_TIME_HOUR',
+         payload:{
+             finishTimeHour
+         }
+     }
+ }
+ export const finishTimeMinute = finishTimeMinute => { 
+     return{
+         type: 'GET_FINISH_TIME_MINUTE',
+         payload: {
+            finishTimeMinute
+         }
+     }
+ }
+ 
+ 
+ 

@@ -21,9 +21,9 @@ const Worklog = ({ state, start }) => {
     //
 
     // start new worklog
-    let second = state.second;
-    let minute = state.minute;
-    let hour = state.hour;
+    let second = state.second 
+    let minute = state.minute
+    let hour = state.hour
 
 
     let runWorklog = () => {

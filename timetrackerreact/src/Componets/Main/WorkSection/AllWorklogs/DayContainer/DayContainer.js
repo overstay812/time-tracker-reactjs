@@ -3,10 +3,10 @@ import styles from './DayContainer.module.css'
 import dowload from './direct-download 1.svg'
 import { Issue } from './Issule/Issule'
 import { connect } from 'react-redux'
-import { TimeLineBar } from './TimeLineBar/TimeLineBar'
+import TimeLineBar from './TimeLineBar/TimeLineBar'
 
 
- const DayContainer = ({worklogData}) => {
+const DayContainer = ({ worklogData }) => {
     return (
         <div className={styles.dayContainer}>
 
@@ -19,15 +19,15 @@ import { TimeLineBar } from './TimeLineBar/TimeLineBar'
                             optimum="80" value="69">
                         </meter>
                     </div>
-                    <button className={styles.button}><img src={dowload} alt="Download button"/></button>
+                    <button className={styles.button}><img src={dowload} alt="Download button" /></button>
                 </div>
             </div>
-            
+
             {
-             worklogData.map(item => <Issue beginTime={item.beginTime} finishTime={item.finishTime} issue={item.issue} title={item.title}/>)
+                worklogData.map(item => <Issue beginTime={item.beginTime} finishTime={item.finishTime} issue={item.issue} title={item.title} />)
             }
-            
-            <TimeLineBar/>
+
+            <TimeLineBar />
 
         </div>
     )
@@ -37,6 +37,6 @@ const matStateToProps = state => {
     return {
         worklogData: state.worklogReducer.worklog
     }
- }
+}
 
-export default connect(matStateToProps,null)(DayContainer)
+export default connect(matStateToProps, null)(DayContainer)
