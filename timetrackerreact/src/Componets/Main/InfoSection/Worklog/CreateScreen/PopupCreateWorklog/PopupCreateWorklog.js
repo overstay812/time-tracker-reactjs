@@ -79,10 +79,10 @@ const PopupCreateWorklog = ({ showPopupWorklog,
                 <div className={styles.footer}>
                     <button className={styles.apply} onClick={() => {
                         // 'start fro update title and issue in reducer'
-                        if (state.title === '') {
-                            alert('stop!')
-                            return
-                        }
+                        // if (state.title === '') {
+                        //     alert('stop!')
+                        //     return
+                        // }
                         if (state.issue === '') {
                             getIssueName('Enter the issue name')
                         }

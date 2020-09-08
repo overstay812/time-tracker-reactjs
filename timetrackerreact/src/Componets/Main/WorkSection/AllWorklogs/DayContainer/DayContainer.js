@@ -24,7 +24,8 @@ const DayContainer = ({ worklogData }) => {
             </div>
 
             {
-                worklogData.map(item => <Issue beginTime={item.beginTime} finishTime={item.finishTime} issue={item.issue} title={item.title} />)
+                // CHANGE KEY IN ARRAY LATER
+                worklogData.map(item => <Issue beginTime={item.beginTime} finishTime={item.finishTime} issue={item.issue} title={item.title} key={Math.random()} />)
             }
 
             <TimeLineBar />
