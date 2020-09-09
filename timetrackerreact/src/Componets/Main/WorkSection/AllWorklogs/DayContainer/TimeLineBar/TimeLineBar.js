@@ -3,17 +3,16 @@ import styles from './TimeLineBar.module.css'
 import { connect } from 'react-redux'
 import CurrentWorklogBar from './CurrentWorklogBar.js/CurrentWorklogBar'
 
-const TimeLineBar = ({ state }) => {
+const TimeLineBar = ({ state, popupToggle }) => {
 
     return (
         <div className={styles.wrapper} >
             <div className={styles.timeBar}>
-                <div className={styles.container}>
+                <div className={styles.container} onClick={()=> popupToggle()}>
                     {state.worklog.map(item => <CurrentWorklogBar beginTimeHour={item.beginTimeHour}
                         beginTimeMinute={item.beginTimeMinute}
                         finishTimeHour={item.finishTimeHour}
                         finishTimeMinute={item.finishTimeMinute}
-
                         key={Math.random()} />)}
                 </div>
             </div>

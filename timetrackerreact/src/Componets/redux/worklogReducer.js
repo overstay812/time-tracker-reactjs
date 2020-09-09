@@ -18,7 +18,7 @@ const initialState = {
     },
     issue: '',
     title: '',
-    beginTimeHour: null,
+    beginTimeHour: 50,
     beginTimeMinute: null,
     finishTimeHour: null,
     finishTimeMinute: null

@@ -6,6 +6,7 @@ import { connect } from 'react-redux'
 import { addWorklogInArray, getTitleName, getIssueName, start, resetTimer, finishTimeHour, finishTimeMinute } from '../../../../../redux/actions'
 import { useState } from 'react'
 import { useEffect } from 'react'
+import RangeSlider from './InputRange'
 
 
 
@@ -51,7 +52,7 @@ const PopupCreateWorklog = ({ showPopupWorklog,
 
                 <div className={styles.main}>
 
-                    <input className={styles.range} type="range" />
+                    <RangeSlider />
 
                     <div className={styles.nameWrapper}>
                         <label className={styles.nameLabel} for="wrk-input-name">Worklog name*</label>

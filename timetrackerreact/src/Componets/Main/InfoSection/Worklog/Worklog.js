@@ -11,7 +11,7 @@ let sec
 let min
 let hr
 
-const Worklog = ({ state, start }) => {
+const Worklog = ({ state, start, showPopupWorklog, popupToggle }) => {
     // toggle between createscreen and newworklog
     const [showWorklog, setShowWorklog] = useState(false)
 
@@ -59,8 +59,8 @@ const Worklog = ({ state, start }) => {
 
     }
 
-    const [showPopupWorklog, setShowPopupWorklog] = useState(false)
-    let popupToggle = () => { setShowPopupWorklog(!showPopupWorklog) }
+    // const [showPopupWorklog, setShowPopupWorklog] = useState(false)
+    // let popupToggle = () => { setShowPopupWorklog(!showPopupWorklog) }
 
 
     
