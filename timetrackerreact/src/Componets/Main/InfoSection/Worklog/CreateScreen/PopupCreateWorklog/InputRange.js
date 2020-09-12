@@ -37,12 +37,6 @@ const useStyles = makeStyles({
         left: -13,
         color: 'red'
     },
-    label: {
-        color: 'red'
-    }
-
-
-
 });
 
 
@@ -56,14 +50,12 @@ function RangeSlider({ state }) {
 
     const classes = useStyles();
     const [value, setValue] = React.useState([0, 37]);
-    // setValue([state.beginTimeHour, 100])
-    console.log(state.beginTimeHour);
+    
+    
     const handleChange = (event, newValue) => {
         setValue(newValue);
     };
-// useEffect(() => {
-//     setValue([state.beginTimeHour, 100]),[] }
-// )
+
 
     return (
         <div className={classes.root}>
@@ -81,8 +73,7 @@ function RangeSlider({ state }) {
                     track: classes.track,
                     thumb: classes.thumb,
                     valueLabel: classes.valueLabel,
-                    circle: classes.circle,
-                    label: classes.label,
+                    
                 }}
             />
         </div>

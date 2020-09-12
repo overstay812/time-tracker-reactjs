@@ -1,7 +1,7 @@
 import React from 'react'
 import styles from './TimeLineBar.module.css'
 import { connect } from 'react-redux'
-import CurrentWorklogBar from './CurrentWorklogBar.js/CurrentWorklogBar'
+import CurrentWorklogBar from './CurrentWorklogBar/CurrentWorklogBar'
 
 const TimeLineBar = ({ state, popupToggle }) => {
 

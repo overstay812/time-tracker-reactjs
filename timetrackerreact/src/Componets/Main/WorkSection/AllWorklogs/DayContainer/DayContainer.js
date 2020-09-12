@@ -1,7 +1,7 @@
 import React from 'react'
 import styles from './DayContainer.module.css'
 import dowload from './direct-download 1.svg'
-import { Issue } from './Issule/Issule'
+import Issue from './Issue/Issue'
 import { connect } from 'react-redux'
 import TimeLineBar from './TimeLineBar/TimeLineBar'
 
@@ -24,11 +24,10 @@ const DayContainer = ({ worklogData, popupToggle }) => {
             </div>
 
             {
-                // CHANGE KEY IN ARRAY LATER
-                worklogData.map(item => <Issue beginTime={item.beginTime} finishTime={item.finishTime} issue={item.issue} title={item.title} key={Math.random()} />)
+                worklogData.map((item, index) => <Issue beginTime={item.beginTime} finishTime={item.finishTime} issue={item.issue} title={item.title} key={index} id={index} />)
             }
 
-            <TimeLineBar popupToggle={popupToggle}/>
+            <TimeLineBar popupToggle={popupToggle} />
 
         </div>
     )
