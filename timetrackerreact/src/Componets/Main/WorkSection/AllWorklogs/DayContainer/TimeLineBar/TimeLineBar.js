@@ -8,12 +8,16 @@ const TimeLineBar = ({ state, popupToggle }) => {
     return (
         <div className={styles.wrapper} >
             <div className={styles.timeBar}>
-                <div className={styles.container} onClick={()=> popupToggle()}>
-                    {state.worklog.map(item => <CurrentWorklogBar beginTimeHour={item.beginTimeHour}
+                <div className={styles.container} onClick={(event) => {
+                    event.stopPropagation()
+                    popupToggle()}}>
+                    {state.worklog.map((item, index) => <CurrentWorklogBar
+                        beginTimeHour={item.beginTimeHour}
                         beginTimeMinute={item.beginTimeMinute}
                         finishTimeHour={item.finishTimeHour}
                         finishTimeMinute={item.finishTimeMinute}
-                        key={Math.random()} />)}
+                        key={index}
+                        onClick={event=> event.preventDefault()} />)}
                 </div>
             </div>
 

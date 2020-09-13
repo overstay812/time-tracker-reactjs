@@ -36,44 +36,51 @@ const useStyles = makeStyles({
         top: 18,
         left: -13,
         color: 'red'
+        
     },
 });
 
 
-function valuetext(value) {
-    return `${value}°C`;
-}
+function RangeSlider({ state, currentDateBegin, currentDateFinish }) {
 
+    
 
-function RangeSlider({ state }) {
-
-
+    let dateStart = currentDateBegin.getMinutes() + (currentDateBegin.getHours() * 60)
+    let dateFinish = currentDateFinish.getMinutes() + (currentDateFinish.getHours() * 60)
     const classes = useStyles();
-    const [value, setValue] = React.useState([0, 37]);
-    
-    
+
+    const [value, setValue] = React.useState([dateStart, dateFinish]);
+
     const handleChange = (event, newValue) => {
         setValue(newValue);
-    };
-
-
+        console.log(value);
+      };
+    
+    function valueLabelFormat(value) {
+        let h = Math.floor(value/60)
+        let m = value-(h*60);
+        return `${h}:${m}`;
+      }      
+    
     return (
         <div className={classes.root}>
 
             <Slider
+                min={420} // 420 it's 7hr * 60 start of workday
+                max={1140} // 1140 it's 19hr * 60 end of workdays 
                 value={value}
                 onChange={handleChange}
                 valueLabelDisplay="auto"
                 aria-labelledby="range-slider"
-                getAriaValueText={valuetext}
-                step={0.2}
+                step={1}
+                valueLabelFormat={valueLabelFormat}
                 classes={{
                     root: classes.root, // class name, e.g. `classes-nesting-root-x`
                     rail: classes.rail, // class name, e.g. `classes-nesting-label-x`
                     track: classes.track,
                     thumb: classes.thumb,
                     valueLabel: classes.valueLabel,
-                    
+
                 }}
             />
         </div>

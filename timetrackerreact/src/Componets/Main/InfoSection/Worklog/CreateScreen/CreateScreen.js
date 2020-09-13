@@ -6,16 +6,25 @@ import { connect } from 'react-redux'
 import { getTitleName, getIssueName, beginTimeHour, beginTimeMinute } from '../../../../redux/actions'
 
 
-const CreateScreen = ({ toggleWorklog, runWorklog, showPopupWorklog, popupToggle, getTitleName, getIssueName, beginTimeHour, beginTimeMinute }) => {
+const CreateScreen = ({
+    toggleWorklog,
+    runWorklog,
+    showPopupWorklog,
+    popupToggle,
+    getTitleName,
+    getIssueName,
+    beginTimeHour,
+    beginTimeMinute
+}) => {
 
-    const currentDate = new Date()
-    
+    let currentDateBegin = new Date()
+
 
     return (
         <div className={styles.createScreen}>
             <button className={styles.btn} onClick={() => {
-                beginTimeHour(currentDate < 10 ? '0' + currentDate.getHours() : currentDate.getHours())
-                beginTimeMinute(currentDate < 10 ? '0' + currentDate.getMinutes() : currentDate.getMinutes())
+                beginTimeHour(currentDateBegin.getHours() < 10 ? '0' + currentDateBegin.getHours() : currentDateBegin.getHours())
+                beginTimeMinute(currentDateBegin.getMinutes() < 10 ? '0' + currentDateBegin.getMinutes() : currentDateBegin.getMinutes())
                 toggleWorklog()
                 runWorklog()
                 getTitleName('')
@@ -23,7 +32,13 @@ const CreateScreen = ({ toggleWorklog, runWorklog, showPopupWorklog, popupToggle
             }
             }><img src={plus} alt="Create Worklog" /></button>
             <span className={styles.title}>new worklog</span>
-            <PopupCreateWorklog showPopupWorklog={showPopupWorklog} popupToggle={popupToggle} toggleWorklog={toggleWorklog} runWorklog={runWorklog} />
+            <PopupCreateWorklog
+                showPopupWorklog={showPopupWorklog}
+                popupToggle={popupToggle}
+                toggleWorklog={toggleWorklog}
+                runWorklog={runWorklog}
+                currentDateBegin={currentDateBegin}
+            />
         </div>
     )
 }

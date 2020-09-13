@@ -21,7 +21,8 @@ const PopupCreateWorklog = ({ showPopupWorklog,
     state,
     resetTimer,
     finishTimeHour,
-    finishTimeMinute
+    finishTimeMinute,
+    currentDateBegin,
 }) => {
 
     let [title, setTitle] = useState(state.title)
@@ -40,7 +41,7 @@ const PopupCreateWorklog = ({ showPopupWorklog,
     let minute = state.newWorklog.minute;
     let hour = state.newWorklog.hour;
 
-    let currentDate = new Date()
+    let currentDateFinish = new Date()
     return (
         // wrapperHide display none default
         <div className={showPopupWorklog ? styles.wrapperShow : styles.wrapperHide}>
@@ -52,7 +53,7 @@ const PopupCreateWorklog = ({ showPopupWorklog,
 
                 <div className={styles.main}>
 
-                    <RangeSlider />
+                    <RangeSlider currentDateBegin={currentDateBegin} currentDateFinish={currentDateFinish} />
 
                     <div className={styles.nameWrapper}>
                         <label className={styles.nameLabel} for="wrk-input-name">Worklog name*</label>
@@ -87,8 +88,8 @@ const PopupCreateWorklog = ({ showPopupWorklog,
                         if (state.issue === '') {
                             getIssueName('Enter the issue name')
                         }
-                        finishTimeHour(currentDate < 10 ? '0' + currentDate.getHours() : currentDate.getHours())
-                        finishTimeMinute(currentDate < 10 ? '0' + currentDate.getMinutes() : currentDate.getMinutes())
+                        finishTimeHour(currentDateFinish.getHours() < 10 ? '0' + currentDateFinish.getHours() : currentDateFinish.getHours())
+                        finishTimeMinute(currentDateFinish.getMinutes() < 10 ? '0' + currentDateFinish.getMinutes() : currentDateFinish.getMinutes())
                         start(second, minute, hour)
                         addWorklogInArray()
                         toggleWorklog()
