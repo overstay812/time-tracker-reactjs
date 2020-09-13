@@ -28,7 +28,7 @@ const CurrentWorklogBar = ({ beginTimeHour, beginTimeMinute, finishTimeMinute, f
     }
 
     return (
-        <div style={styles}></div>
+        <div style={styles} onClick={event=> event.stopPropagation()}></div>
     )
 }
 

@@ -53,7 +53,7 @@ function RangeSlider({ state, currentDateBegin, currentDateFinish }) {
 
     const handleChange = (event, newValue) => {
         setValue(newValue);
-        console.log(value);
+        
       };
     
     function valueLabelFormat(value) {
