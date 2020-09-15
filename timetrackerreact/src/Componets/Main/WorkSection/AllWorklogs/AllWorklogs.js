@@ -3,11 +3,11 @@ import styles from './AllWorklogs.module.css'
 import  DayContainer  from './DayContainer/DayContainer'
 
 
-export const AllWorklogs = ({state, popupToggle}) => {
+export const AllWorklogs = ({state}) => {
 
     return (
         <div className={state? styles.allWorklogs: styles.hide }>
-            <DayContainer popupToggle={popupToggle}/>     
+            <DayContainer />     
         </div>
     )
 }

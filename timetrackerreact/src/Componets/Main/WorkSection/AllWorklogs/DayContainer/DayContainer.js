@@ -6,7 +6,7 @@ import { connect } from 'react-redux'
 import TimeLineBar from './TimeLineBar/TimeLineBar'
 
 
-const DayContainer = ({ worklogData, popupToggle }) => {
+const DayContainer = ({ worklogData }) => {
     return (
         <div className={styles.dayContainer}>
 
@@ -23,11 +23,20 @@ const DayContainer = ({ worklogData, popupToggle }) => {
                 </div>
             </div>
 
+
+
             {
-                worklogData.map((item, index) => <Issue beginTime={item.beginTime} finishTime={item.finishTime} issue={item.issue} title={item.title} key={index} id={index} />)
+                worklogData.map((item, index) => <Issue
+                    beginTime={item.beginTime}
+                    finishTime={item.finishTime}
+                    issue={item.issue}
+                    title={item.title}
+                    key={index}
+                    id={index} 
+                    />)
             }
 
-            <TimeLineBar popupToggle={popupToggle} />
+            <TimeLineBar />
 
         </div>
     )

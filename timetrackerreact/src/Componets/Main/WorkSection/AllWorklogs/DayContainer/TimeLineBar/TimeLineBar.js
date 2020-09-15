@@ -2,28 +2,36 @@ import React from 'react'
 import styles from './TimeLineBar.module.css'
 import { connect } from 'react-redux'
 import CurrentWorklogBar from './CurrentWorklogBar/CurrentWorklogBar'
-import { beginTimeHour, beginTimeMinute } from '../../../../../redux/actions'
+import {
+    beginTimeHour,
+    beginTimeMinute,
+    popupWorklogToggle
+} from '../../../../../redux/actions'
 
-const TimeLineBar = ({ state, popupToggle, beginTimeHour, beginTimeMinute }) => {
+
+
+const TimeLineBar = ({ state, beginTimeHour, beginTimeMinute, popupWorklogToggle }) => {
     let getClickPositionForTime = event => {
         let xFromPage = event.pageX
         let xOfElement = event.currentTarget.offsetLeft
 
         let currentXInsideElement = xFromPage - xOfElement // here maybe need +2px check this later
         let hour = Math.floor((currentXInsideElement / 1.46) / 60) + 7 // +7 becouse timeline statrt from 7am
+        let minute = Math.floor(currentXInsideElement / 1.46 - ((hour - 7) * 60))
+
         beginTimeHour(hour)
-        let minute = Math.floor(currentXInsideElement / 1.46 - ((hour - 7) * 60)) 
-        beginTimeMinute()
-        console.log(hour, ':', minute
-        );
-        // popupToggle()
+        beginTimeMinute(minute)
 
     }
 
     return (
         <div className={styles.wrapper} >
             <div className={styles.timeBar}>
-                <div className={styles.container} onClick={(event) => getClickPositionForTime(event)}>
+                <div className={styles.container} onClick={(event) => {
+                    getClickPositionForTime(event)
+                    popupWorklogToggle()
+                }}>
+
                     {state.worklog.map((item, index) => <CurrentWorklogBar
                         beginTimeHour={item.beginTimeHour}
                         beginTimeMinute={item.beginTimeMinute}
@@ -61,7 +69,8 @@ const mapStateToProps = state => {
 }
 const mapDispatchToProps = {
     beginTimeHour,
-    beginTimeMinute
+    beginTimeMinute,
+    popupWorklogToggle
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(TimeLineBar)

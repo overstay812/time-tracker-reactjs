@@ -11,7 +11,7 @@ let sec
 let min
 let hr
 
-const Worklog = ({ state, start, showPopupWorklog, popupToggle }) => {
+const Worklog = ({ state, start }) => {
     // toggle between createscreen and newworklog
     const [showWorklog, setShowWorklog] = useState(false)
 
@@ -21,7 +21,7 @@ const Worklog = ({ state, start, showPopupWorklog, popupToggle }) => {
     //
 
     // start new worklog
-    let second = state.second 
+    let second = state.second
     let minute = state.minute
     let hour = state.hour
 
@@ -59,11 +59,6 @@ const Worklog = ({ state, start, showPopupWorklog, popupToggle }) => {
 
     }
 
-    // const [showPopupWorklog, setShowPopupWorklog] = useState(false)
-    // let popupToggle = () => { setShowPopupWorklog(!showPopupWorklog) }
-
-
-    
     return (
         <div className={styles.worklog}>
             <div className={styles.wrapper}>
@@ -81,16 +76,14 @@ const Worklog = ({ state, start, showPopupWorklog, popupToggle }) => {
             <div className={styles.container}>
                 <CreateScreen toggleWorklog={toggleWorklog}
                     runWorklog={runWorklog}
-                    showPopupWorklog={showPopupWorklog}
-                    popupToggle={popupToggle}
+                    
                     toggleWorklog={toggleWorklog}
-                    />
+                />
                 <NewWorklog
                     showWorklog={showWorklog}
-                    
                     pauseWorklog={pauseWorklog}
                     runWorklog={runWorklog}
-                    popupToggle={popupToggle}
+                   
                 />
             </div>
         </div>

@@ -1,9 +1,10 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import Typography from '@material-ui/core/Typography';
+
 import { connect } from 'react-redux'
 import Slider from '@material-ui/core/Slider';
-import { useEffect } from 'react';
+
+import { beginTimeHour, beginTimeMinute } from '../../../../../redux/actions';
 
 
 
@@ -41,7 +42,7 @@ const useStyles = makeStyles({
 });
 
 
-function RangeSlider({ state, currentDateBegin, currentDateFinish }) {
+function RangeSlider({ state, currentDateBegin, currentDateFinish, beginTimeHour, beginTimeMinute }) {
 
     
 
@@ -53,13 +54,16 @@ function RangeSlider({ state, currentDateBegin, currentDateFinish }) {
 
     const handleChange = (event, newValue) => {
         setValue(newValue);
+        beginTimeHour(currentDateBegin.getHours())
+        beginTimeMinute(currentDateBegin.getMinutes())
         
       };
     
+        
     function valueLabelFormat(value) {
-        let h = Math.floor(value/60)
-        let m = value-(h*60);
-        return `${h}:${m}`;
+        let hour = Math.floor(value/60)
+        let minute = value-(hour*60);
+        return `${hour}:${minute}`;
       }      
     
     return (
@@ -74,6 +78,7 @@ function RangeSlider({ state, currentDateBegin, currentDateFinish }) {
                 aria-labelledby="range-slider"
                 step={1}
                 valueLabelFormat={valueLabelFormat}
+                // marks={true}
                 classes={{
                     root: classes.root, // class name, e.g. `classes-nesting-root-x`
                     rail: classes.rail, // class name, e.g. `classes-nesting-label-x`
@@ -91,6 +96,9 @@ const mapStateToProps = state => {
         state: state.worklogReducer
     }
 }
+const mapDispatchToProps = {
+    beginTimeHour,
+    beginTimeMinute
+}
 
-
-export default connect(mapStateToProps, null)(RangeSlider)
+export default connect(mapStateToProps, mapDispatchToProps)(RangeSlider)

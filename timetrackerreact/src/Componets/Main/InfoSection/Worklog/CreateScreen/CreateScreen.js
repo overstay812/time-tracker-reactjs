@@ -3,14 +3,17 @@ import styles from './CreateScreen.module.css'
 import plus from './plus.svg'
 import PopupCreateWorklog from './PopupCreateWorklog/PopupCreateWorklog'
 import { connect } from 'react-redux'
-import { getTitleName, getIssueName, beginTimeHour, beginTimeMinute } from '../../../../redux/actions'
+import {
+    getTitleName,
+    getIssueName,
+    beginTimeHour,
+    beginTimeMinute
+} from '../../../../redux/actions'
 
 
 const CreateScreen = ({
     toggleWorklog,
     runWorklog,
-    showPopupWorklog,
-    popupToggle,
     getTitleName,
     getIssueName,
     beginTimeHour,
@@ -33,8 +36,6 @@ const CreateScreen = ({
             }><img src={plus} alt="Create Worklog" /></button>
             <span className={styles.title}>new worklog</span>
             <PopupCreateWorklog
-                showPopupWorklog={showPopupWorklog}
-                popupToggle={popupToggle}
                 toggleWorklog={toggleWorklog}
                 runWorklog={runWorklog}
                 currentDateBegin={currentDateBegin}

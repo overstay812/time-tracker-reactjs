@@ -104,4 +104,18 @@ export const getCurrentWorklog = currentId => {
        
     }
  }
+ export const popupWorklogToggle = () => {
+    return{
+        type: 'POPUP_WORKLOG_TOGGLE_STATE',
+    }
+ }
+ export const getSelectedCalendarDay = (selectedCalendarDay) => {
+     return {
+         type: 'SELECTED_CALENDAR_DAY',
+         payload: {
+            selectedCalendarDay
+         }
+     }
+  }
+ 
 

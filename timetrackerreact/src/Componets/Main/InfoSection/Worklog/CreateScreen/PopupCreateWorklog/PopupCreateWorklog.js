@@ -3,26 +3,34 @@ import styles from './PopupCreateWorklog.module.css'
 import apply from './Vector (Stroke).svg'
 import cancel from './x.svg'
 import { connect } from 'react-redux'
-import { addWorklogInArray, getTitleName, getIssueName, start, resetTimer, finishTimeHour, finishTimeMinute } from '../../../../../redux/actions'
+import {
+    addWorklogInArray,
+    getTitleName,
+    getIssueName,
+    start,
+    resetTimer,
+    finishTimeHour,
+    finishTimeMinute,
+    popupWorklogToggle
+} from '../../../../../redux/actions'
 import { useState } from 'react'
 import { useEffect } from 'react'
 import RangeSlider from './InputRange'
 
 
-
-const PopupCreateWorklog = ({ showPopupWorklog,
+const PopupCreateWorklog = ({
     addWorklogInArray,
     toggleWorklog,
     runWorklog,
     getTitleName,
     getIssueName,
     start,
-    popupToggle,
     state,
     resetTimer,
     finishTimeHour,
     finishTimeMinute,
     currentDateBegin,
+    popupWorklogToggle
 }) => {
 
     let [title, setTitle] = useState(state.title)
@@ -42,9 +50,10 @@ const PopupCreateWorklog = ({ showPopupWorklog,
     let hour = state.newWorklog.hour;
 
     let currentDateFinish = new Date()
+ 
     return (
         // wrapperHide display none default
-        <div className={showPopupWorklog ? styles.wrapperShow : styles.wrapperHide}>
+        <div className={state.popupWorklogToggleState ? styles.wrapperShow : styles.wrapperHide}>
             <div className={styles.popup}>
 
                 <div className={styles.header}>
@@ -94,10 +103,10 @@ const PopupCreateWorklog = ({ showPopupWorklog,
                         addWorklogInArray()
                         toggleWorklog()
                         resetTimer()
-                        popupToggle()
+                        popupWorklogToggle()
                     }} ><img src={apply} alt="Apply button" /></button>
                     <button className={styles.cancel} onClick={() => {
-                        popupToggle()
+                        popupWorklogToggle()
                         runWorklog()
                     }}><img src={cancel} alt="Cancel button" /></button>
                 </div>
@@ -120,6 +129,7 @@ const mapDispatchToProps = {
     resetTimer,
     finishTimeHour,
     finishTimeMinute,
+    popupWorklogToggle
 
 }
 export default connect(mapStateToPRops, mapDispatchToProps)(PopupCreateWorklog)

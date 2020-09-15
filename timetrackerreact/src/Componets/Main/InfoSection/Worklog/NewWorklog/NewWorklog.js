@@ -3,11 +3,24 @@ import styles from './NewWorklog.module.css'
 import pause from './pause.svg'
 import stop from './stop.svg'
 import { connect } from 'react-redux'
-import { getTitleName, getIssueName } from '../../../../redux/actions'
+import {
+    getTitleName,
+    getIssueName,
+    popupWorklogToggle
+} from '../../../../redux/actions'
 import { useEffect } from 'react'
 
 
-const NewWorklog = ({ showWorklog, state, state2, getTitleName, getIssueName, pauseWorklog, runWorklog, popupToggle }) => {
+
+const NewWorklog = ({ showWorklog,
+    state,
+    state2,
+    getTitleName,
+    getIssueName,
+    pauseWorklog,
+    runWorklog,
+    popupWorklogToggle
+}) => {
 
     const [toggleStartPause, setToggleStartPause] = useState(true)
 
@@ -31,12 +44,12 @@ const NewWorklog = ({ showWorklog, state, state2, getTitleName, getIssueName, pa
             <input type="text" className={styles.addIssue} value={state2.issue} placeholder="Add issue" onChange={event => setIssue(event.target.value)} />
 
             <span className={styles.time}>
-                {state.hour < 10? '0' + state.hour : state.hour}:{state.minute < 10 ? '0' + state.minute : state.minute}:{state.second < 10 ? '0' + state.second : state.second}
+                {state.hour < 10 ? '0' + state.hour : state.hour}:{state.minute < 10 ? '0' + state.minute : state.minute}:{state.second < 10 ? '0' + state.second : state.second}
             </span>
             <div className={styles.btnWrapper}>
                 <button className={styles.btnStop} onClick={() => {
                     pauseWorklog()
-                    popupToggle()
+                    popupWorklogToggle()
                 }}><img src={stop} alt="stop" /></button>
                 <button className={styles.btnPause}><img src={pause} alt="pause" onClick={() => {
                     // pause/continue worklog timer
@@ -57,7 +70,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = {
     getTitleName,
-    getIssueName
+    getIssueName,
+    popupWorklogToggle
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(NewWorklog)
