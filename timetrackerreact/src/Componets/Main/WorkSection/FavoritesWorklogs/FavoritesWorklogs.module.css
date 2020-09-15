@@ -1,0 +1,10 @@
+.favoritesWorklogs {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding-top: 34px;
+}
+.hide {
+    display: none;
+}
+    

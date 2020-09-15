@@ -1,0 +1,66 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  background: #f9fafc;
+  width: 100%;
+}
+
+.hide {
+  display: none;
+}
+.title {
+  background: none;
+  margin-top: 56px;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 144.2%;
+  color: #000000;
+  border: none;
+  text-align: center;
+  padding: 0;
+  text-transform: uppercase;
+}
+.addIssue {
+  margin-top: 14px;
+  font-size: 18px;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 144.2%;
+  font-variant: small-caps;
+  background: none;
+  border: none;
+  text-transform: uppercase;
+  color: #828282;
+  text-align: center;
+}
+.time {
+  margin-top: 11px;
+  font-size: 54px;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 54px;
+  line-height: 144.2%;
+  color: #1e1e1e;
+}
+.btnWrapper {
+  margin-top: 31px;
+}
+.btnStop {
+  background: none;
+  border: none;
+  margin-right: 22px;
+  padding: 0px;
+}
+.btnPause {
+  background: none;
+  border: none;
+  padding: 0px;
+}

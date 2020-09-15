@@ -1,0 +1,32 @@
+.createScreen {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+  }
+  .btn {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 66px;
+    height: 66px;
+    background: #ffffff;
+    border-radius: 50%;
+    border: none;
+    box-shadow: 0px 7px 15px rgba(148, 156, 160, 0.13);
+    
+    
+  }
+  .title {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 144.2%;
+    font-variant: small-caps;
+    color: #c4cacb;
+    text-transform: uppercase;
+    margin-top: 22px;
+  }
