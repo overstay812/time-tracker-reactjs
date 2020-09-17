@@ -117,5 +117,12 @@ export const getCurrentWorklog = currentId => {
          }
      }
   }
+  export const addWorklogInSelectedDay = () => {
+      return {
+          type: 'ADD_WORKLOG_IN_SELECTED_DAY_IN_MONTH',
+          
+      }
+   }
+  
  
 
