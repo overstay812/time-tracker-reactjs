@@ -8,6 +8,7 @@ import { getWorklogId, deleteWorklog, getCurrentWorklog, addToFavorites } from '
 
 
 const Issue = (props) => {
+
     let id = props.id
     props.getWorklogId(id)
     

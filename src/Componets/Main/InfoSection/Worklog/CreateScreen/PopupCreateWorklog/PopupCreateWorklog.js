@@ -11,7 +11,8 @@ import {
     resetTimer,
     finishTimeHour,
     finishTimeMinute,
-    popupWorklogToggle
+    popupWorklogToggle,
+    addWorklogInSelectedDay
 } from '../../../../../redux/actions'
 import { useState } from 'react'
 import { useEffect } from 'react'
@@ -30,7 +31,9 @@ const PopupCreateWorklog = ({
     finishTimeHour,
     finishTimeMinute,
     currentDateBegin,
-    popupWorklogToggle
+    popupWorklogToggle,
+    addWorklogInSelectedDay
+
 }) => {
 
     let [title, setTitle] = useState(state.title)
@@ -50,7 +53,7 @@ const PopupCreateWorklog = ({
     let hour = state.newWorklog.hour;
 
     let currentDateFinish = new Date()
- 
+
     return (
         // wrapperHide display none default
         <div className={state.popupWorklogToggleState ? styles.wrapperShow : styles.wrapperHide}>
@@ -101,9 +104,13 @@ const PopupCreateWorklog = ({
                         finishTimeMinute(currentDateFinish.getMinutes() < 10 ? '0' + currentDateFinish.getMinutes() : currentDateFinish.getMinutes())
                         start(second, minute, hour)
                         addWorklogInArray()
+                        addWorklogInSelectedDay()
                         toggleWorklog()
                         resetTimer()
                         popupWorklogToggle()
+                        
+                        
+                  
                     }} ><img src={apply} alt="Apply button" /></button>
                     <button className={styles.cancel} onClick={() => {
                         popupWorklogToggle()
@@ -129,7 +136,8 @@ const mapDispatchToProps = {
     resetTimer,
     finishTimeHour,
     finishTimeMinute,
-    popupWorklogToggle
+    popupWorklogToggle,
+    addWorklogInSelectedDay
 
 }
 export default connect(mapStateToPRops, mapDispatchToProps)(PopupCreateWorklog)

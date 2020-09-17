@@ -32,6 +32,7 @@ const CreateScreen = ({
                 runWorklog()
                 getTitleName('')
                 getIssueName('')
+
             }
             }><img src={plus} alt="Create Worklog" /></button>
             <span className={styles.title}>new worklog</span>
