@@ -7,13 +7,22 @@ import TimeLineBar from './TimeLineBar/TimeLineBar'
 
 
 
-const DayContainer = ({ month, selectedDay }) => {
+const DayContainer = ({ month, selectedDay, weekDayNumber }) => {
+
+    let dayNumber = selectedDay.split('-')[2]
+
+    let monthArray = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+    let monthNumber = Number(selectedDay.split('-')[1])
+    let weekDay = Number(weekDayNumber)
+    let weekDaysArray = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+
+
 
     return (
         <div className={styles.dayContainer}>
 
             <div className={styles.dataAndFulltime}>
-                <span className={styles.data}><b>Wed</b>, June 10</span>
+                <span className={styles.data}><b>{weekDaysArray[weekDay]}</b>, {monthArray[monthNumber - 1]} {dayNumber}</span>
                 <div className={styles.wrapper}>
                     <div className={styles.fullTimeProgress}>
                         <span className={styles.time}>06:05:00</span>
@@ -36,14 +45,11 @@ const DayContainer = ({ month, selectedDay }) => {
                 />)
             } */}
 
-{/* 
-{[<Issue/>,
-<Issue/>]} */}
 
-            {month.map( (item, index) => {
-                console.log(item);
+            {month.map((item, index) => {
+
                 if (Object.keys(item)[0] === selectedDay) {
-// debugger
+
                     let day = Object.values(item)[0]
 
                     return day.map((item, index) => {
@@ -66,12 +72,14 @@ const DayContainer = ({ month, selectedDay }) => {
     )
 }
 
-const matStateToProps = state => {
+const mapStateToProps = state => {
     return {
         worklogData: state.worklogReducer.worklog,
         month: state.worklogReducer.month,
-        selectedDay: state.worklogReducer.selectedCalendarDay
+        selectedDay: state.worklogReducer.selectedCalendarDay,
+        weekDayNumber: state.worklogReducer.selectedDayOfWeekNumber
+
     }
 }
 
-export default connect(matStateToProps, null)(DayContainer)
+export default connect(mapStateToProps, null)(DayContainer)

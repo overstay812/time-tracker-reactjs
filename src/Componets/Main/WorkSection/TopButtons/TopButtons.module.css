@@ -1,60 +1,99 @@
 .topButtons {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    width: 100%;
-    position: relative;
-  }
-  .wrapper {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-end;
-    align-items: center;
-  }
-  .buttonCalendar {
-    margin-left: 24px;
-    padding: 16px 32px;
-    border: none;
-    background: #d0d5d8;
-    border-radius: 30px;
-    font-family: Roboto;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 18px;
-    line-height: 144.2%;
-    font-variant: small-caps;
-    color: #3744BD;
-    outline: none;
-  }
-  .icon{
-      margin-left: 18px;
-  }
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+  position: relative;
+}
+.wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+}
+.buttonCalendar {
+  margin-left: 24px;
+  padding: 16px 32px;
+  border: none;
+  background: #d0d5d8;
+  border-radius: 30px;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 144.2%;
+  font-variant: small-caps;
+  color: #3744bd;
+  outline: none;
+  text-transform: uppercase;
+}
+.buttonCalendarActive {
+  margin-left: 24px;
+  padding: 16px 32px;
+  border: none;
+  background: #f9fafc;
+  border-radius: 30px;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 144.2%;
+  font-variant: small-caps;
+  color: #3744bd;
+  outline: none;
+  text-transform: uppercase;
+}
 
-  .buttonAll {
-    padding: 16px 32px;
-    border: none;
-    background: #d0d5d8;
-    border-radius: 30px;
-  
-    font-family: Roboto;
-    font-style: normal;
-    font-weight: 500;
-    font-size: 18px;
-    line-height: 144.2%;
-  }
-  .buttonFavorites{
-    padding: 16px 32px;
-    border: none;
-    background: #f9fafc;
-    border-radius: 30px;
-    color: #bbbbbb;
-    font-family: Roboto;
-    font-style: normal;
-    font-weight: 500;
-    font-size: 18px;
-    line-height: 144.2%;
-  }
-  
-  
-  
-  
+.icon {
+  margin-left: 18px;
+}
+
+.buttonAll {
+  padding: 16px 32px;
+  border: none;
+  background: #f9fafc;
+  border-radius: 30px;
+  color: #bbbbbb;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 144.2%;
+}
+.buttonAllActive {
+  padding: 16px 32px;
+  border: none;
+  background: #d0d5d8;
+  border-radius: 30px;
+  color: #4f4f4f;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 144.2%;
+}
+.buttonFavorites {
+  padding: 16px 32px;
+  border: none;
+  background: #f9fafc;
+  border-radius: 30px;
+  color: #bbbbbb;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 144.2%;
+}
+
+.buttonFavoritesActive {
+  padding: 16px 32px;
+  border: none;
+  background: #d0d5d8;
+  border-radius: 30px;
+  color: #4f4f4f;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 144.2%;
+}

@@ -91,38 +91,56 @@ export const deleteWorklog = (currentId) => {
     }
 }
 export const getCurrentWorklog = currentId => {
-    return{
+    return {
         type: 'GET_CURRENT_WORKLOG',
         payload: {
             currentId
         }
     }
- }
- export const addToFavorites = () => {
-    return{
+}
+export const addToFavorites = () => {
+    return {
         type: 'ADD_CURRENT_WORKLOG_TO_FAVORITES_ARRAY',
-       
+
     }
- }
- export const popupWorklogToggle = () => {
-    return{
+}
+export const popupWorklogToggle = () => {
+    return {
         type: 'POPUP_WORKLOG_TOGGLE_STATE',
     }
- }
- export const getSelectedCalendarDay = (selectedCalendarDay) => {
-     return {
-         type: 'SELECTED_CALENDAR_DAY',
-         payload: {
+}
+export const getSelectedCalendarDay = (selectedCalendarDay) => {
+    return {
+        type: 'SELECTED_CALENDAR_DAY',
+        payload: {
             selectedCalendarDay
-         }
-     }
-  }
-  export const addWorklogInSelectedDay = () => {
-      return {
-          type: 'ADD_WORKLOG_IN_SELECTED_DAY_IN_MONTH',
-          
-      }
-   }
-  
- 
+        }
+    }
+}
+export const addWorklogInSelectedDay = () => {
+    return {
+        type: 'ADD_WORKLOG_IN_SELECTED_DAY_IN_MONTH',
+
+    }
+}
+
+export const getTodayCalendarDay = (todayCalendarDay) => {
+    return {
+        type: 'TODAY_CALENDAR_DAY',
+        payload: {
+            todayCalendarDay
+        }
+
+    }
+}
+
+export const getWeekDayNumber = (weekDayNumber) => {
+    return {
+        type: 'SELECTED_DAY_OF_WEEK_NUMBER',
+        payload: {
+            weekDayNumber
+        }
+
+    }
+}
 
