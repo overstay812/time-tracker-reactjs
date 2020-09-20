@@ -144,3 +144,30 @@ export const getWeekDayNumber = (weekDayNumber) => {
     }
 }
 
+export const getClickPosition = (clickPosition) => {
+    return {
+        type: 'CLICK_POSITION_IN_TIME_LINE_BAR',
+        payload: {
+            clickPosition
+        }
+    }
+ }
+
+ export const getStartPosition = (startPosition) => {
+    return {
+        type: 'START_POSITION',
+        payload: {
+            startPosition
+        }
+    }
+ }
+ export const getEndPosition = (endPosition) => {
+    return {
+        type: 'END_POSITION',
+        payload: {
+            endPosition
+        }
+    }
+ }
+
+

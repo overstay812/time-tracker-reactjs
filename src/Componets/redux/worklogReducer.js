@@ -44,6 +44,11 @@ const initialState = {
     selectedDayOfWeekNumber: '',
     popupWorklogToggleState: false,
 
+    clickPosition: 0,
+    startPosition: 420,
+    endPosition: 1140
+
+
 }
 export const worklogReducer = (state = initialState, action) => {
 
@@ -153,9 +158,6 @@ export const worklogReducer = (state = initialState, action) => {
                         let key = Object.keys(item)[0]
                         return {
                             [key]: Object.values(item)[0].concat(state.worklog),
-                            // getWorklogs() {
-                            //     return this[state.selectedCalendarDay]
-                            // }
                         }
 
                     } else {
@@ -163,6 +165,25 @@ export const worklogReducer = (state = initialState, action) => {
                     }
                 })
             }
+        case 'CLICK_POSITION_IN_TIME_LINE_BAR':
+            return {
+                ...state, clickPosition: action.payload.clickPosition
+            }
+        case 'START_POSITION':
+            return {
+                ...state, startPosition: action.payload.startPosition
+            }
+        case 'END_POSITION':
+            let value = () => {
+                let endPosition = action.payload.endPosition
+                if ((endPosition - state.startPosition) > 240) { //validation maxlimit in 4hour
+                    endPosition = state.startPosition + 240
+                }
+                return endPosition
+            }
+            return {
+                ...state, endPosition: value()        
+             }
 
 
         default: return state

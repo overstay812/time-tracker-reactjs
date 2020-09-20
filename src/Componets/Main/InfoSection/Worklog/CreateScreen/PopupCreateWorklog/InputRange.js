@@ -63,6 +63,7 @@ function RangeSlider({ state, currentDateBegin, currentDateFinish, beginTimeHour
     function valueLabelFormat(value) {
         let hour = Math.floor(value/60)
         let minute = value-(hour*60);
+
         return `${hour}:${minute}`;
       }      
     
