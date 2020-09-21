@@ -5,8 +5,6 @@ import Issue from './Issue/Issue'
 import { connect } from 'react-redux'
 import TimeLineBar from './TimeLineBar/TimeLineBar'
 
-
-
 const DayContainer = ({ month, selectedDay, weekDayNumber }) => {
 
     let dayNumber = selectedDay.split('-')[2]
@@ -19,8 +17,8 @@ const DayContainer = ({ month, selectedDay, weekDayNumber }) => {
 
 
     return (
+        
         <div className={styles.dayContainer}>
-
             <div className={styles.dataAndFulltime}>
                 <span className={styles.data}><b>{weekDaysArray[weekDay]}</b>, {monthArray[monthNumber - 1]} {dayNumber}</span>
                 <div className={styles.wrapper}>
@@ -68,6 +66,7 @@ const DayContainer = ({ month, selectedDay, weekDayNumber }) => {
             })}
 
             <TimeLineBar />
+            
         </div>
     )
 }

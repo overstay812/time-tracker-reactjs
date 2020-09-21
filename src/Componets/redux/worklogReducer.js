@@ -1,9 +1,10 @@
+import { DataFromServer } from "./monthDataBase"
+// // import  {monthDataBase}  from './monthDataBase'
 
-import { monthDataBase } from './monthDataBase'
 
 const initialState = {
-    // month: monthDataBase,
-    month: monthDataBase,
+    month: [],
+    // month: hello(),
 
     // [
     // {
@@ -182,8 +183,13 @@ export const worklogReducer = (state = initialState, action) => {
                 return endPosition
             }
             return {
-                ...state, endPosition: value()        
-             }
+                ...state, endPosition: value()
+            }
+        case 'GETTING_DATA_FROM_SERVER':
+            console.log(action.payload.monthDataBase);
+            return {
+                ...state, month: action.payload.monthDataBase
+            }
 
 
         default: return state

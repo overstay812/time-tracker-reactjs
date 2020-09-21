@@ -169,5 +169,14 @@ export const getClickPosition = (clickPosition) => {
         }
     }
  }
+ export const getDataFromServer = (monthDataBase) => {
+    return {
+        type: 'GETTING_DATA_FROM_SERVER',
+        payload: {
+            monthDataBase
+        }
+    }
+ }
+
 
 

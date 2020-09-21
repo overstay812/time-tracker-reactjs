@@ -7,7 +7,7 @@ import { connect } from 'react-redux';
 import { getSelectedCalendarDay, getTodayCalendarDay, getWeekDayNumber } from '../redux/actions';
 
 
-const Calendar = ({ toggleCalendar, getSelectedCalendarDay, getTodayCalendarDay, getWeekDayNumber }) => {
+const Calendar = ({ toggleCalendar, getSelectedCalendarDay, getTodayCalendarDay, getWeekDayNumber}) => {
   const [selectedDate, handleDateChange] = useState(new Date());
   useEffect(() => {
     if (selectedDate._d) {
@@ -53,7 +53,7 @@ const Calendar = ({ toggleCalendar, getSelectedCalendarDay, getTodayCalendarDay,
 
         />
       </MuiPickersUtilsProvider>
-      {}
+      
     </div>
   );
 }
@@ -61,6 +61,7 @@ const Calendar = ({ toggleCalendar, getSelectedCalendarDay, getTodayCalendarDay,
 const mapDispatchToProps = {
   getSelectedCalendarDay,
   getTodayCalendarDay,
-  getWeekDayNumber
+  getWeekDayNumber,
+
 }
 export default connect(null, mapDispatchToProps)(Calendar) 
