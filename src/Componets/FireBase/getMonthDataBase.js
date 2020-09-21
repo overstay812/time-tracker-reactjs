@@ -1,16 +1,17 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
-import { fire } from '../../fire';
-import { getDataFromServer } from './actions';
+import { fire } from './fire';
+import { getDataFromServer } from '../redux/actions';
 
+let dataRef = fire.firestore()
 
-const DataBaseServer = ({ getDataFromServer, selectedCalendarDay }) => {
+const DataBaseServer = ({ getDataFromServer, selectedCalendarDay, preparedNewWorklog }) => {
+    //get data from server
     let monthDataBase
     let getDataBaseFromServer = () => {
 
         let dateArray = [];
         let currentDay = selectedCalendarDay
-        let dataRef = fire.firestore()
         dataRef.collection('date').get().then((querySnapshot) => {
             querySnapshot.forEach((doc) => {
                 let date = doc.data()
@@ -29,6 +30,7 @@ const DataBaseServer = ({ getDataFromServer, selectedCalendarDay }) => {
 
     }
     getDataBaseFromServer()
+    
     return (
         <div></div>
     )
@@ -37,7 +39,8 @@ const DataBaseServer = ({ getDataFromServer, selectedCalendarDay }) => {
 
 const mapStateToProps = state => {
     return {
-        selectedCalendarDay: state.worklogReducer.selectedCalendarDay
+        selectedCalendarDay: state.worklogReducer.selectedCalendarDay,
+        
     }
 }
 
@@ -49,22 +52,13 @@ const mapDispatchToProps = {
 export default connect(mapStateToProps, mapDispatchToProps)(DataBaseServer)
 
 
-// let foo = async () => {
-//     await getDataFromServer()
-
-
-// }
-// foo()
-
-
-
 // let loadDataToDB = (base) => {
 //     base.forEach(element => {
 //         let keyArray = Object.keys(element)[0]
 //         let keyValueArray = Object.values(element)
-//         console.log('keyValueArray:', keyValueArray)
+        
 //         keyValueArray[0].forEach(elem => {
-//             console.log('elem:', elem)
+            
 //             dataRef.collection('date').add({
 //                 date: keyArray,
 //                 second: elem.second,
@@ -80,9 +74,9 @@ export default connect(mapStateToProps, mapDispatchToProps)(DataBaseServer)
 //                 id: elem.id,
 //                 minute: Number(elem.minute)
 //             })
-//                 .then(function (docRef) {
-//                     console.log("Document written with ID: ", docRef.id);
-//                 })
+//                 // .then(function (docRef) {
+//                 //     console.log("Document written with ID: ", docRef.id);
+//                 // })
 //                 .catch(function (error) {
 //                     console.error("Error adding document: ", error);
 //                 })

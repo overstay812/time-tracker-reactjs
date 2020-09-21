@@ -1,5 +1,7 @@
-import { DataFromServer } from "./monthDataBase"
+import { DataFromServer } from "../FireBase/getMonthDataBase"
+// import  {loadDataToDB}  from "../FireBase/postMonthDataBase"
 // // import  {monthDataBase}  from './monthDataBase'
+
 
 
 const initialState = {
@@ -82,6 +84,7 @@ export const worklogReducer = (state = initialState, action) => {
                 }
             }
         case 'STOP':
+            
             return {
                 ...state, worklog: state.worklog.concat([state.newWorklog])
             }
@@ -186,7 +189,7 @@ export const worklogReducer = (state = initialState, action) => {
                 ...state, endPosition: value()
             }
         case 'GETTING_DATA_FROM_SERVER':
-            console.log(action.payload.monthDataBase);
+            // console.log(action.payload.monthDataBase);
             return {
                 ...state, month: action.payload.monthDataBase
             }

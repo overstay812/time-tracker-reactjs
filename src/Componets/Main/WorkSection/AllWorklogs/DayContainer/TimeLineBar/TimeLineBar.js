@@ -40,7 +40,7 @@ const TimeLineBar = ({
         beginTimeMinute(minute)
 
         let clickPosition = hour * 60 + minute // in minutes
-        console.log('click', clickPosition);
+
         getClickPosition(clickPosition)
 
     }
