@@ -4,20 +4,21 @@ import polygon from './Polygon 1.svg'
 import { useState } from 'react'
 import moreVertical from './more-vertical.svg'
 import { connect, useSelector } from 'react-redux'
-import { getWorklogId, deleteWorklog, getCurrentWorklog, addToFavorites } from '../../../../../redux/actions'
+import { deleteWorklog, addToFavorites, getWorklogId } from '../../../../../redux/actions'
 
 
 const Issue = (props) => {
 
-    let id = props.id
-    props.getWorklogId(id)
-    
     const [mouseOverWorklog, setMouseOver] = useState(false)
     let toggleWorklog = () => {
+        props.getWorklogId(props.beginTime)
         setMouseOver(!mouseOverWorklog)}
         
     const [mouseOverMenu, setMouseOverMenu] = useState(false)
     let toggleMenu = () => setMouseOverMenu(!mouseOverMenu)
+
+
+    
    
     return (
         <div className={styles.wrapper} onMouseEnter={toggleWorklog} onMouseLeave={toggleWorklog}>
@@ -42,12 +43,12 @@ const Issue = (props) => {
                         <a href="#" className={styles.link} >Jira link</a>
                         <a href="#" className={styles.link} >Duplicate</a>
                         <a href="#" className={styles.link} onClick={()=> {
-                            props.getCurrentWorklog(id)
+
                             props.addToFavorites()
                             }} >Add to favorite</a>
                         <a href="#" className={styles.link} onClick={()=> {
-                            
-                            props.deleteWorklog(id)}} >Delete</a>
+                            props.deleteWorklog()
+                            }} >Delete</a>
                     </div>
                 </div>
             </div>
@@ -56,9 +57,9 @@ const Issue = (props) => {
 }
 
 const mapDispatchToPRops = {
-    getWorklogId,
+
     deleteWorklog,
-    getCurrentWorklog,
+     getWorklogId,
     addToFavorites,
 }
 export default connect(null, mapDispatchToPRops)(Issue)

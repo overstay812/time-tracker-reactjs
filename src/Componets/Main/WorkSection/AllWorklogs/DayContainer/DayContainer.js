@@ -1,12 +1,17 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import styles from './DayContainer.module.css'
 import dowload from './direct-download 1.svg'
 import Issue from './Issue/Issue'
 import { connect } from 'react-redux'
 import TimeLineBar from './TimeLineBar/TimeLineBar'
 
-const DayContainer = ({ month, selectedDay, weekDayNumber }) => {
 
+
+
+const DayContainer = ({ month, selectedDay, weekDayNumber}) => {
+
+
+    
     let dayNumber = selectedDay.split('-')[2]
 
     let monthArray = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
@@ -14,10 +19,11 @@ const DayContainer = ({ month, selectedDay, weekDayNumber }) => {
     let weekDay = Number(weekDayNumber)
     let weekDaysArray = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 
-
-
+    
+    
     return (
-        
+
+
         <div className={styles.dayContainer}>
             <div className={styles.dataAndFulltime}>
                 <span className={styles.data}><b>{weekDaysArray[weekDay]}</b>, {monthArray[monthNumber - 1]} {dayNumber}</span>
@@ -31,18 +37,6 @@ const DayContainer = ({ month, selectedDay, weekDayNumber }) => {
                     <button className={styles.button}><img src={dowload} alt="Download button" /></button>
                 </div>
             </div>
-
-            {/* {
-                worklogData.map((item, index) => <Issue
-                    beginTime={item.beginTime}
-                    finishTime={item.finishTime}
-                    issue={item.issue}
-                    title={item.title}
-                    key={index}
-                    id={index}
-                />)
-            } */}
-
 
             {month.map((item, index) => {
 
@@ -58,7 +52,7 @@ const DayContainer = ({ month, selectedDay, weekDayNumber }) => {
                             issue={item.issue}
                             title={item.title}
                             key={index}
-                            id={index}
+
                         />
                     }
                     )
@@ -66,7 +60,7 @@ const DayContainer = ({ month, selectedDay, weekDayNumber }) => {
             })}
 
             <TimeLineBar />
-            
+
         </div>
     )
 }
@@ -76,9 +70,11 @@ const mapStateToProps = state => {
         worklogData: state.worklogReducer.worklog,
         month: state.worklogReducer.month,
         selectedDay: state.worklogReducer.selectedCalendarDay,
-        weekDayNumber: state.worklogReducer.selectedDayOfWeekNumber
+        weekDayNumber: state.worklogReducer.selectedDayOfWeekNumber,
+        rerenderWorklog: state.worklogReducer.rerenderWorklogList
 
     }
 }
+
 
 export default connect(mapStateToProps, null)(DayContainer)

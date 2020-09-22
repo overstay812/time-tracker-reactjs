@@ -28,10 +28,11 @@ let PostMonthDataBase = ({ preparedNewWorklog, selectedCalendarDay }) => {
                 issue: valueWorklog.issue,
                 title: valueWorklog.title,
                 id: valueWorklog.id,
-                minute: Number(valueWorklog.minute)
+                minute: Number(valueWorklog.minute),
+
             })
                 .then(function (docRef) {
-                    console.log("Document written with ID: ", docRef.id);
+                    console.log("Document written with ID: ", docRef.id, valueWorklog.id);
                 })
                 .catch(function (error) {
                     console.error("Error adding document: ", error);

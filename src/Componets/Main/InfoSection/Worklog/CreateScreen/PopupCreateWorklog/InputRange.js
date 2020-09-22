@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 
 import { connect } from 'react-redux'
@@ -37,36 +37,36 @@ const useStyles = makeStyles({
         top: 18,
         left: -13,
         color: 'red'
-        
+
     },
 });
 
 
 function RangeSlider({ state, currentDateBegin, currentDateFinish, beginTimeHour, beginTimeMinute }) {
 
-    
+
 
     let dateStart = currentDateBegin.getMinutes() + (currentDateBegin.getHours() * 60)
     let dateFinish = currentDateFinish.getMinutes() + (currentDateFinish.getHours() * 60)
     const classes = useStyles();
 
     const [value, setValue] = React.useState([dateStart, dateFinish]);
-
+    
     const handleChange = (event, newValue) => {
         setValue(newValue);
         beginTimeHour(currentDateBegin.getHours())
         beginTimeMinute(currentDateBegin.getMinutes())
-        
-      };
-    
-        
+
+    };
+
+
     function valueLabelFormat(value) {
-        let hour = Math.floor(value/60)
-        let minute = value-(hour*60);
+        let hour = Math.floor(value / 60)
+        let minute = value - (hour * 60);
 
         return `${hour}:${minute}`;
-      }      
-    
+    }
+
     return (
         <div className={classes.root}>
 

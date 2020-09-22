@@ -4,7 +4,7 @@ import polygon from './Polygon 1.svg'
 import { useState } from 'react'
 import moreVertical from './more-vertical.svg'
 import { connect } from 'react-redux'
-import { getWorklogId, deleteWorklog} from '../../../../redux/actions'
+import { deleteWorklog} from '../../../../redux/actions'
 
 
 
@@ -17,9 +17,6 @@ const Issue = (props) => {
     const [mouseOverMenu, setMouseOverMenu] = useState(false)
     let toggleMenu = () => setMouseOverMenu(!mouseOverMenu)
 
-
-    let id = props.id
-    props.getWorklogId(id)
 
 
     return (
@@ -45,7 +42,7 @@ const Issue = (props) => {
                         <a href="#" className={styles.link} >Jira link</a>
                         <a href="#" className={styles.link} >Duplicate</a>
                         <a href="#" className={styles.link} >Add to favorite</a>
-                        <a href="#" className={styles.link} onClick={() => props.deleteWorklog(id)} >Delete</a>
+                        <a href="#" className={styles.link} onClick={() => props.deleteWorklog()} >Delete</a>
                     </div>
                 </div>
             </div>
@@ -54,7 +51,6 @@ const Issue = (props) => {
 }
 
 const mapDispatchToPRops = {
-    getWorklogId,
     deleteWorklog,
 }
 export default connect(null, mapDispatchToPRops)(Issue)
