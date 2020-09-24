@@ -201,4 +201,11 @@ export const getClickPosition = clickPosition => {
         }
     }
  }
- 
+
+ export const jiraDowloadToggle = () => {
+    return {
+        type: 'JIRA_DOWLOAD_TOGGLE',
+    }
+ }
+
+

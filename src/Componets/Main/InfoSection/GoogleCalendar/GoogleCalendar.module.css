@@ -59,7 +59,15 @@
     display: flex;
     width: 3px;
     height: 76px;
-    background: #75e1f9;
+    background: #62D2B1;
+    border-radius: 1px;
+  }
+  .statusbarYellow{
+    align-self: center;
+    display: flex;
+    width: 3px;
+    height: 76px;
+    background: #FFCC40;
     border-radius: 1px;
   }
 

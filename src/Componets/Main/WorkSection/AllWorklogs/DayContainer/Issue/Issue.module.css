@@ -64,7 +64,18 @@
   max-width: 610px;
   width: 100%;
   height: 76px;
-  border-left: 3.25px solid #e34040;
+  border-left: 3.25px solid #FFCC40;
+  margin-left: 0px;
+  padding-left: 27px;
+}
+.infoBlue {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  max-width: 610px;
+  width: 100%;
+  height: 76px;
+  border-left: 3.25px solid #62D2B1;
   margin-left: 0px;
   padding-left: 27px;
 }
@@ -91,6 +102,16 @@
   width: 100%;
   height: 15px;
 }
+.meter::-webkit-meter-optimum-value {
+  box-shadow: 0 5px 5px -5px #999 inset;
+  background-image: linear-gradient(
+    90deg, 
+    #62D2B1 5%, 
+    #62D2B1 100%
+  );
+  background-size: 100% 100%;
+}
+
 .spendTime {
   color: #bbbbbb;
   margin-left: 50px;

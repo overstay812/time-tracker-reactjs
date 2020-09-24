@@ -6,7 +6,7 @@ import switchActive from './switch active.svg'
 import switchUnactive from './switch unactive.svg'
 import vectorGray from './VectorGray.svg'
 
-const GoogleCalendar = ({ month, selectedDay }) => {
+const GoogleCalendar = ({ month, selectedDay, jiraDowload }) => {
 
     const [calendarToggle, setCalendarToggle] = useState(false)
 
@@ -27,7 +27,7 @@ const GoogleCalendar = ({ month, selectedDay }) => {
                         let day = Object.values(item)[0]
                         return day.map((item, index) => {
                             return <div className={styles.card}>
-                                <div className={styles.statusbar}></div>
+                                <div className={jiraDowload? styles.statusbar: styles.statusbarYellow }></div>
                                 <div className={styles.item}>
                                     <span className={styles.name}>{item.title}</span>
                                     <span className={styles.time}>{`${item.beginTime}-${item.finishTime}`}</span>
@@ -46,6 +46,7 @@ const mapStapeToProps = state => {
     return {
         month: state.worklogReducer.month,
         selectedDay: state.worklogReducer.selectedCalendarDay,
+        jiraDowload: state.worklogReducer.jiraDowloadToggle
     }
 }
 export default connect(mapStapeToProps, null)(GoogleCalendar) 

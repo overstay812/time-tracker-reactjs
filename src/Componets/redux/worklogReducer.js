@@ -30,8 +30,9 @@ const initialState = {
     popupDeleteWOrklogToggle: false,
 
     toolTipToggle: false,
-    toolTipTitle: ''
+    toolTipTitle: '',
 
+    jiraDowloadToggle: false
 
 
 }
@@ -113,10 +114,10 @@ export const worklogReducer = (state = initialState, action) => {
                 deleteWorklogToggle: !state.deleteWorklogToggle,
                 month: [{ [state.selectedCalendarDay]: filtredWorklogArray }]
             }
-            case 'POPUP_DELETE_WORKLOG_TOGGLE' :
-                return {
-                    ...state, popupDeleteWOrklogToggle: !state.popupDeleteWOrklogToggle
-                }
+        case 'POPUP_DELETE_WORKLOG_TOGGLE':
+            return {
+                ...state, popupDeleteWOrklogToggle: !state.popupDeleteWOrklogToggle
+            }
         // case 'GET_CURRENT_WORKLOG':
 
         //     let day = state.selectedCalendarDay.split("-")
@@ -196,9 +197,15 @@ export const worklogReducer = (state = initialState, action) => {
         case 'TOOLTIP_ON':
             return {
                 ...state,
-                toolTipTitle: action.payload.toolTipTitle ,
-                 toolTipToggle: !state.toolTipToggle
+                toolTipTitle: action.payload.toolTipTitle,
+                toolTipToggle: !state.toolTipToggle
             }
+            case 'JIRA_DOWLOAD_TOGGLE':
+            return {
+                ...state, jiraDowloadToggle: !state.jiraDowloadToggle
+            }
+
+            
 
         default: return state
     }
