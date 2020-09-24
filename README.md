@@ -1,2 +1,2 @@
 # time-tracker-reactjs
-adaptive fullwork app 
+fullwork app 
