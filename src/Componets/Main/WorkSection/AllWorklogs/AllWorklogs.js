@@ -9,6 +9,7 @@ export const AllWorklogs = ({ state }) => {
 
         <div className={state ? styles.allWorklogs : styles.hide}>
             <DayContainer />
+            
         </div>
     )
 }

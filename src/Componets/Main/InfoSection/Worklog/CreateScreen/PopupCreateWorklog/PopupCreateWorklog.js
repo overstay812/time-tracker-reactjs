@@ -12,7 +12,8 @@ import {
     finishTimeHour,
     finishTimeMinute,
     popupWorklogToggle,
-    addWorklogInSelectedDay
+    addWorklogInSelectedDay,
+    toolTip
 } from '../../../../../redux/actions'
 import { useState } from 'react'
 import { useEffect } from 'react'
@@ -32,7 +33,9 @@ const PopupCreateWorklog = ({
     finishTimeMinute,
     currentDateBegin,
     popupWorklogToggle,
-    addWorklogInSelectedDay
+    addWorklogInSelectedDay,
+    toolTip,
+    toolTipToggle
 
 }) => {
 
@@ -92,14 +95,19 @@ const PopupCreateWorklog = ({
                 </div>
                 <div className={styles.footer}>
                     <button className={styles.apply} onClick={() => {
-                        // 'start fro update title and issue in reducer'
-                        // if (state.title === '') {
-                        //     alert('stop!')
-                        //     return
-                        // }
+                        if (state.title === '') {
+                            toolTip('Please, enter the worklog name.')
+                            return null
+                        }
                         if (state.issue === '') {
                             getIssueName('Enter the issue name')
+                            if(toolTipToggle !== false) {
+                                toolTip('')
+                            }
+                            
                         }
+                        
+                        // 'start to update title and issue in reducer'
                         finishTimeHour(currentDateFinish.getHours() < 10 ? '0' + currentDateFinish.getHours() : currentDateFinish.getHours())
                         finishTimeMinute(currentDateFinish.getMinutes() < 10 ? '0' + currentDateFinish.getMinutes() : currentDateFinish.getMinutes())
                         start(second, minute, hour)
@@ -108,10 +116,11 @@ const PopupCreateWorklog = ({
                         toggleWorklog()
                         resetTimer()
                         popupWorklogToggle()
-                        
-                        
-                  
+
+
+
                     }} ><img src={apply} alt="Apply button" /></button>
+
                     <button className={styles.cancel} onClick={() => {
                         popupWorklogToggle()
                         runWorklog()
@@ -124,6 +133,7 @@ const PopupCreateWorklog = ({
 const mapStateToPRops = state => {
     return {
         state: state.worklogReducer,
+        toolTipToggle: state.worklogReducer.toolTipToggle
 
     }
 }
@@ -137,7 +147,7 @@ const mapDispatchToProps = {
     finishTimeHour,
     finishTimeMinute,
     popupWorklogToggle,
-    addWorklogInSelectedDay
-
+    addWorklogInSelectedDay,
+    toolTip
 }
 export default connect(mapStateToPRops, mapDispatchToProps)(PopupCreateWorklog)

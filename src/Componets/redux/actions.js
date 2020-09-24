@@ -82,7 +82,7 @@ export const getWorklogId = id => {
         }
     }
 }
-export const deleteWorklog = (currentId) => {
+export const deleteWorklog = currentId => {
     return {
         type: 'DELETE_WORKLOG',
         payload: {
@@ -90,17 +90,26 @@ export const deleteWorklog = (currentId) => {
         }
     }
 }
-export const getCurrentWorklog = currentId => {
+export const popupDeleteToggle = ()=> {
     return {
-        type: 'GET_CURRENT_WORKLOG',
-        payload: {
-            currentId
-        }
+        type: 'POPUP_DELETE_WORKLOG_TOGGLE',
     }
-}
-export const addToFavorites = () => {
+ }
+
+// export const getCurrentWorklog = currentId => {
+//     return {
+//         type: 'GET_CURRENT_WORKLOG',
+//         payload: {
+//             currentId
+//         }
+//     }
+// }
+export const addToFavorites = (toggle) => {
     return {
-        type: 'ADD_CURRENT_WORKLOG_TO_FAVORITES_ARRAY',
+        type: 'ADD_WORKLOG_TO_FAVORITES',
+        payload: {
+            toggle
+        }
 
     }
 }
@@ -109,7 +118,7 @@ export const popupWorklogToggle = () => {
         type: 'POPUP_WORKLOG_TOGGLE_STATE',
     }
 }
-export const getSelectedCalendarDay = (selectedCalendarDay) => {
+export const getSelectedCalendarDay = selectedCalendarDay => {
     return {
         type: 'SELECTED_CALENDAR_DAY',
         payload: {
@@ -124,7 +133,7 @@ export const addWorklogInSelectedDay = () => {
     }
 }
 
-export const getTodayCalendarDay = (todayCalendarDay) => {
+export const getTodayCalendarDay = todayCalendarDay => {
     return {
         type: 'TODAY_CALENDAR_DAY',
         payload: {
@@ -134,7 +143,7 @@ export const getTodayCalendarDay = (todayCalendarDay) => {
     }
 }
 
-export const getWeekDayNumber = (weekDayNumber) => {
+export const getWeekDayNumber = weekDayNumber => {
     return {
         type: 'SELECTED_DAY_OF_WEEK_NUMBER',
         payload: {
@@ -144,7 +153,7 @@ export const getWeekDayNumber = (weekDayNumber) => {
     }
 }
 
-export const getClickPosition = (clickPosition) => {
+export const getClickPosition = clickPosition => {
     return {
         type: 'CLICK_POSITION_IN_TIME_LINE_BAR',
         payload: {
@@ -153,7 +162,7 @@ export const getClickPosition = (clickPosition) => {
     }
  }
 
- export const getStartPosition = (startPosition) => {
+ export const getStartPosition = startPosition => {
     return {
         type: 'START_POSITION',
         payload: {
@@ -161,7 +170,7 @@ export const getClickPosition = (clickPosition) => {
         }
     }
  }
- export const getEndPosition = (endPosition) => {
+ export const getEndPosition = endPosition => {
     return {
         type: 'END_POSITION',
         payload: {
@@ -169,7 +178,7 @@ export const getClickPosition = (clickPosition) => {
         }
     }
  }
- export const getDataFromServer = (monthDataBase) => {
+ export const getDataFromServer = monthDataBase => {
     return {
         type: 'GETTING_DATA_FROM_SERVER',
         payload: {
@@ -178,5 +187,18 @@ export const getClickPosition = (clickPosition) => {
     }
  }
 
+ export const clearWorklogArray = () => {
+    return {
+        type: 'CLEAR_WORKLOG_ARRAY',
+    }
+ }
 
-
+ export const toolTip = toolTipTitle => {
+    return {
+        type: 'TOOLTIP_ON',
+        payload: {
+            toolTipTitle
+        }
+    }
+ }
+ 

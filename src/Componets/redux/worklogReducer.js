@@ -4,8 +4,7 @@
 const initialState = {
     month: [],
     worklog: [],
-    currentFavoriteWorklog: [],
-    favoritesWorklog: [],
+    isFavorite: false,
     newWorklog: {
         second: 0,
         minute: 0,
@@ -28,6 +27,10 @@ const initialState = {
     endPosition: 1140,
 
     deleteWorklogToggle: false,
+    popupDeleteWOrklogToggle: false,
+
+    toolTipToggle: false,
+    toolTipTitle: ''
 
 
 
@@ -60,13 +63,16 @@ export const worklogReducer = (state = initialState, action) => {
                     finishTimeHour: state.finishTimeHour,
                     finishTimeMinute: state.finishTimeMinute,
                     id: state.id,
+                    isFavorite: state.isFavorite
 
                 }
             }
         case 'STOP':
 
             return {
-                ...state, worklog: state.worklog.concat([state.newWorklog])
+                // ...state, worklog: state.worklog.concat([state.newWorklog]),
+                ...state, worklog: [state.newWorklog],
+
             }
         case 'GET_TITLE':
             return {
@@ -100,28 +106,34 @@ export const worklogReducer = (state = initialState, action) => {
             }
         case 'DELETE_WORKLOG':
             let worklogsArray = Object.values(state.month[0])[0]
-            let filtredWorklogArray = worklogsArray.filter(item=> (item.beginTime !== state.id))
+            let filtredWorklogArray = worklogsArray.filter(item => (item.beginTime !== state.id))
 
             return {
                 ...state,
                 deleteWorklogToggle: !state.deleteWorklogToggle,
                 month: [{ [state.selectedCalendarDay]: filtredWorklogArray }]
             }
-        case 'GET_CURRENT_WORKLOG':
+            case 'POPUP_DELETE_WORKLOG_TOGGLE' :
+                return {
+                    ...state, popupDeleteWOrklogToggle: !state.popupDeleteWOrklogToggle
+                }
+        // case 'GET_CURRENT_WORKLOG':
 
-            let day = state.selectedCalendarDay.split("-")
-            let number = Number(day[2]) - 1 // -1 becouse calendar start from 1 and index start fron 0
+        //     let day = state.selectedCalendarDay.split("-")
+        //     let number = Number(day[2]) - 1 // -1 becouse calendar start from 1 and index start fron 0
 
-            let currentElement = Object.values(state.month[number])[0][action.payload.currentId]
+        //     let currentElement = Object.values(state.month[number])[0][action.payload.currentId]
 
+        //     return {
+        //         ...state,
+        //         currentFavoriteWorklog: currentElement
+        //     }
+
+        case 'ADD_WORKLOG_TO_FAVORITES':
+            console.log(action.payload.toggle);
             return {
-                ...state,
-                currentFavoriteWorklog: currentElement
-            }
-        case 'ADD_CURRENT_WORKLOG_TO_FAVORITES_ARRAY':
-            return {
-                ...state,
-                favoritesWorklog: state.favoritesWorklog.concat(state.currentFavoriteWorklog)
+                ...state, isFavorite: action.payload.toggle
+
             }
         case 'POPUP_WORKLOG_TOGGLE_STATE':
             return {
@@ -176,6 +188,16 @@ export const worklogReducer = (state = initialState, action) => {
         case 'GETTING_DATA_FROM_SERVER':
             return {
                 ...state, month: action.payload.monthDataBase
+            }
+        case 'CLEAR_WORKLOG_ARRAY':
+            return {
+                ...state, worklog: []
+            }
+        case 'TOOLTIP_ON':
+            return {
+                ...state,
+                toolTipTitle: action.payload.toolTipTitle ,
+                 toolTipToggle: !state.toolTipToggle
             }
 
         default: return state

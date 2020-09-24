@@ -3,8 +3,8 @@ import styles from './Issue.module.css'
 import polygon from './Polygon 1.svg'
 import { useState } from 'react'
 import moreVertical from './more-vertical.svg'
-import { connect, useSelector } from 'react-redux'
-import { deleteWorklog, addToFavorites, getWorklogId } from '../../../../../redux/actions'
+import { connect } from 'react-redux'
+import {  addToFavorites, getWorklogId, popupDeleteToggle } from '../../../../../redux/actions'
 
 
 const Issue = (props) => {
@@ -44,10 +44,11 @@ const Issue = (props) => {
                         <a href="#" className={styles.link} >Duplicate</a>
                         <a href="#" className={styles.link} onClick={()=> {
 
-                            props.addToFavorites()
+                            props.addToFavorites(true)
                             }} >Add to favorite</a>
+
                         <a href="#" className={styles.link} onClick={()=> {
-                            props.deleteWorklog()
+                            props.popupDeleteToggle()
                             }} >Delete</a>
                     </div>
                 </div>
@@ -58,8 +59,8 @@ const Issue = (props) => {
 
 const mapDispatchToPRops = {
 
-    deleteWorklog,
      getWorklogId,
     addToFavorites,
+    popupDeleteToggle
 }
 export default connect(null, mapDispatchToPRops)(Issue)

@@ -1,0 +1,55 @@
+
+.toolTips {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  right: 61px;
+  bottom: 48px;
+  /* width: 343px; */
+ 
+  background: #ffffff;
+  box-shadow: 0px 7px 15px rgba(148, 156, 160, 0.13);
+  border-radius: 20px;
+  padding-top: 30px;
+  padding-left: 34px;
+  padding-right: 24px;
+  padding-bottom: 27px;
+  z-index: 9999;
+}
+.toolTipsHide {
+  display: none;
+}
+.topBar {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding-bottom: 15px;
+}
+
+.cirlce {
+    display: flex;
+    width: 12px;
+    height: 12px;
+    background: #FFCC40;
+    border-radius: 50%;
+}
+.buttonClose {
+  border: none;
+  background: none;
+  color: #c4cacb;
+}
+
+.title {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 144.2%;
+  color: #1e1e1e;
+  margin-right: 12px;
+  max-width: 275px;
+  height: 56px;
+}
