@@ -4,7 +4,7 @@
   justify-content: flex-start;
   width: 100%;
   border-bottom: 1px solid #e9ecf2;
-  height: 100vh;
+  height: 363px;
   position: relative;
 }
 .wrapper {
@@ -42,6 +42,9 @@
     z-index: 9999;
     right: 67px;
     top: 22px;
+  }
+  .dropdownHide {
+    display: none;
   }
 
 .link {

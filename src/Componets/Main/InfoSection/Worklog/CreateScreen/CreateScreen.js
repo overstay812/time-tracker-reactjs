@@ -50,5 +50,6 @@ const mapDispatchToProps = {
     getIssueName,
     beginTimeHour,
     beginTimeMinute
+
 }
 export default connect(null, mapDispatchToProps)(CreateScreen) 

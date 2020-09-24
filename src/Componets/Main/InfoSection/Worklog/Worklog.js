@@ -51,6 +51,7 @@ const Worklog = ({ state, start }) => {
         }, 3600000);
 
     }
+const [showDropDown, setShowDropDown] = useState(false)
 
     let pauseWorklog = () => {
         clearInterval(sec)
@@ -63,9 +64,9 @@ const Worklog = ({ state, start }) => {
         <div className={styles.worklog}>
             <div className={styles.wrapper}>
                 <span className={styles.title}>Time tracking</span>
-                <button className={styles.btn}><img src={more} alt="" /></button>
+                <button className={styles.btn} onClick={()=> setShowDropDown(!showDropDown)}><img src={more} alt="more button" /></button>
                 {/* dropdown menu display none default */}
-                <div className={styles.dropdown}>
+                <div className={showDropDown? styles.dropdown: styles.dropdownHide}>
                     <a href="#" className={styles.link} >Jira link</a>
                     <a href="#" className={styles.link} >Duplicate</a>
                     <a href="#" className={styles.link} >Add to favorite</a>
@@ -75,8 +76,7 @@ const Worklog = ({ state, start }) => {
             {/* worklog container */}
             <div className={styles.container}>
                 <CreateScreen toggleWorklog={toggleWorklog}
-                    runWorklog={runWorklog}
-                    
+                    runWorklog={runWorklog} 
                     toggleWorklog={toggleWorklog}
                 />
                 <NewWorklog

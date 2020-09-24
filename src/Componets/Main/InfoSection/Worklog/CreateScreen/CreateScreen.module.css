@@ -3,6 +3,10 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    width: 100%;
+    
+    
+
 
   }
   .btn {
@@ -29,4 +33,5 @@
     color: #c4cacb;
     text-transform: uppercase;
     margin-top: 22px;
+    
   }

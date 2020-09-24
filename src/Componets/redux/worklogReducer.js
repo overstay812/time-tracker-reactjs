@@ -1,30 +1,10 @@
 
-import { monthDataBase } from './monthDataBase'
+
 
 const initialState = {
-    // month: monthDataBase,
-    month: [
-        {
-            "2020-09-01": [
-                { second: 0, minute: 0, hour: 0, beginTime: '09:00', finishTime: '10:00', beginTimeHour: 9, beginTimeMinute: 0, finishTimeHour: 10, finishTimeMinute: 0, issue: 'JRM-310', title: 'Team standup', id: 0, },
-                { second: 0, minute: 0, hour: 0, beginTime: '10:00', finishTime: '11:15', beginTimeHour: 10, beginTimeMinute: 0, finishTimeHour: 11, finishTimeMinute: 15, issue: 'JRM-310', title: 'Team Meeting with QA', id: 1, },
-            ]
-        },
-        {
-            "2020-09-02": [
-                { second: 0, minute: 0, hour: 0, beginTime: '11:30', finishTime: '13:00', beginTimeHour: 11, beginTimeMinute: 30, finishTimeHour: 13, finishTimeMinute: 0, issue: 'JRM-310', title: 'Company branding', id: 2, },
-                { second: 0, minute: 0, hour: 0, beginTime: '13:20', finishTime: '16:00', beginTimeHour: 13, beginTimeMinute: 20, finishTimeHour: 16, finishTimeMinute: 0, issue: 'JRM-310', title: 'Team standup3', id: 3, },
-            ]
-        },
-        {
-            "2020-09-03": [
-                { second: 0, minute: 0, hour: 0, beginTime: '13:20', finishTime: '16:00', beginTimeHour: 13, beginTimeMinute: 20, finishTimeHour: 16, finishTimeMinute: 0, issue: 'JRM-310', title: 'Team standup3', id: 3, },
-            ]
-        },
-    ],
+    month: [],
     worklog: [],
-    currentFavoriteWorklog: [],
-    favoritesWorklog: [],
+    isFavorite: false,
     newWorklog: {
         second: 0,
         minute: 0,
@@ -36,10 +16,23 @@ const initialState = {
     beginTimeMinute: null,
     finishTimeHour: null,
     finishTimeMinute: null,
-    id: null,
-    selectedCalendarDay: null,
-
+    id: '',
+    todayCalendarDay: '',
+    selectedCalendarDay: '',
+    selectedDayOfWeekNumber: '',
     popupWorklogToggleState: false,
+
+    clickPosition: 0,
+    startPosition: 420,
+    endPosition: 1140,
+
+    deleteWorklogToggle: false,
+    popupDeleteWOrklogToggle: false,
+
+    toolTipToggle: false,
+    toolTipTitle: ''
+
+
 
 }
 export const worklogReducer = (state = initialState, action) => {
@@ -70,11 +63,16 @@ export const worklogReducer = (state = initialState, action) => {
                     finishTimeHour: state.finishTimeHour,
                     finishTimeMinute: state.finishTimeMinute,
                     id: state.id,
+                    isFavorite: state.isFavorite
+
                 }
             }
         case 'STOP':
+
             return {
-                ...state, worklog: state.worklog.concat([state.newWorklog])
+                // ...state, worklog: state.worklog.concat([state.newWorklog]),
+                ...state, worklog: [state.newWorklog],
+
             }
         case 'GET_TITLE':
             return {
@@ -107,19 +105,35 @@ export const worklogReducer = (state = initialState, action) => {
                 ...state, id: action.payload.id
             }
         case 'DELETE_WORKLOG':
-            return {
-                ...state, worklog: state.worklog.filter((item, index) => index !== action.payload.currentId)
-            }
-        case 'GET_CURRENT_WORKLOG':
-            return {
-                ...state,
-                currentFavoriteWorklog: state.worklog.filter((item, index) => index === action.payload.currentId),
-    
-            }
-        case 'ADD_CURRENT_WORKLOG_TO_FAVORITES_ARRAY':
+            let worklogsArray = Object.values(state.month[0])[0]
+            let filtredWorklogArray = worklogsArray.filter(item => (item.beginTime !== state.id))
+
             return {
                 ...state,
-                favoritesWorklog: state.favoritesWorklog.concat(state.currentFavoriteWorklog)
+                deleteWorklogToggle: !state.deleteWorklogToggle,
+                month: [{ [state.selectedCalendarDay]: filtredWorklogArray }]
+            }
+            case 'POPUP_DELETE_WORKLOG_TOGGLE' :
+                return {
+                    ...state, popupDeleteWOrklogToggle: !state.popupDeleteWOrklogToggle
+                }
+        // case 'GET_CURRENT_WORKLOG':
+
+        //     let day = state.selectedCalendarDay.split("-")
+        //     let number = Number(day[2]) - 1 // -1 becouse calendar start from 1 and index start fron 0
+
+        //     let currentElement = Object.values(state.month[number])[0][action.payload.currentId]
+
+        //     return {
+        //         ...state,
+        //         currentFavoriteWorklog: currentElement
+        //     }
+
+        case 'ADD_WORKLOG_TO_FAVORITES':
+            console.log(action.payload.toggle);
+            return {
+                ...state, isFavorite: action.payload.toggle
+
             }
         case 'POPUP_WORKLOG_TOGGLE_STATE':
             return {
@@ -129,6 +143,14 @@ export const worklogReducer = (state = initialState, action) => {
             return {
                 ...state, selectedCalendarDay: action.payload.selectedCalendarDay
             }
+        case 'TODAY_CALENDAR_DAY':
+            return {
+                ...state, todayCalendarDay: action.payload.todayCalendarDay
+            }
+        case 'SELECTED_DAY_OF_WEEK_NUMBER':
+            return {
+                ...state, selectedDayOfWeekNumber: action.payload.weekDayNumber
+            }
         case 'ADD_WORKLOG_IN_SELECTED_DAY_IN_MONTH':
             return {
                 ...state, month: state.month.map((item, index) => {
@@ -137,15 +159,45 @@ export const worklogReducer = (state = initialState, action) => {
                         let key = Object.keys(item)[0]
                         return {
                             [key]: Object.values(item)[0].concat(state.worklog),
-                            // getWorklogs() {
-                            //     return this[state.selectedCalendarDay]
-                            // }
                         }
 
                     } else {
                         return item
                     }
                 })
+            }
+        case 'CLICK_POSITION_IN_TIME_LINE_BAR':
+            return {
+                ...state, clickPosition: action.payload.clickPosition
+            }
+        case 'START_POSITION':
+            return {
+                ...state, startPosition: action.payload.startPosition
+            }
+        case 'END_POSITION':
+            let value = () => {
+                let endPosition = action.payload.endPosition
+                if ((endPosition - state.startPosition) > 240) { //validation maxlimit in 4hour
+                    endPosition = state.startPosition + 240
+                }
+                return endPosition
+            }
+            return {
+                ...state, endPosition: value()
+            }
+        case 'GETTING_DATA_FROM_SERVER':
+            return {
+                ...state, month: action.payload.monthDataBase
+            }
+        case 'CLEAR_WORKLOG_ARRAY':
+            return {
+                ...state, worklog: []
+            }
+        case 'TOOLTIP_ON':
+            return {
+                ...state,
+                toolTipTitle: action.payload.toolTipTitle ,
+                 toolTipToggle: !state.toolTipToggle
             }
 
         default: return state

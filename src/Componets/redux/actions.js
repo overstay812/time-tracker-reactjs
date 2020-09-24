@@ -82,7 +82,7 @@ export const getWorklogId = id => {
         }
     }
 }
-export const deleteWorklog = (currentId) => {
+export const deleteWorklog = currentId => {
     return {
         type: 'DELETE_WORKLOG',
         payload: {
@@ -90,39 +90,115 @@ export const deleteWorklog = (currentId) => {
         }
     }
 }
-export const getCurrentWorklog = currentId => {
-    return{
-        type: 'GET_CURRENT_WORKLOG',
+export const popupDeleteToggle = ()=> {
+    return {
+        type: 'POPUP_DELETE_WORKLOG_TOGGLE',
+    }
+ }
+
+// export const getCurrentWorklog = currentId => {
+//     return {
+//         type: 'GET_CURRENT_WORKLOG',
+//         payload: {
+//             currentId
+//         }
+//     }
+// }
+export const addToFavorites = (toggle) => {
+    return {
+        type: 'ADD_WORKLOG_TO_FAVORITES',
         payload: {
-            currentId
+            toggle
+        }
+
+    }
+}
+export const popupWorklogToggle = () => {
+    return {
+        type: 'POPUP_WORKLOG_TOGGLE_STATE',
+    }
+}
+export const getSelectedCalendarDay = selectedCalendarDay => {
+    return {
+        type: 'SELECTED_CALENDAR_DAY',
+        payload: {
+            selectedCalendarDay
+        }
+    }
+}
+export const addWorklogInSelectedDay = () => {
+    return {
+        type: 'ADD_WORKLOG_IN_SELECTED_DAY_IN_MONTH',
+
+    }
+}
+
+export const getTodayCalendarDay = todayCalendarDay => {
+    return {
+        type: 'TODAY_CALENDAR_DAY',
+        payload: {
+            todayCalendarDay
+        }
+
+    }
+}
+
+export const getWeekDayNumber = weekDayNumber => {
+    return {
+        type: 'SELECTED_DAY_OF_WEEK_NUMBER',
+        payload: {
+            weekDayNumber
+        }
+
+    }
+}
+
+export const getClickPosition = clickPosition => {
+    return {
+        type: 'CLICK_POSITION_IN_TIME_LINE_BAR',
+        payload: {
+            clickPosition
         }
     }
  }
- export const addToFavorites = () => {
-    return{
-        type: 'ADD_CURRENT_WORKLOG_TO_FAVORITES_ARRAY',
-       
-    }
- }
- export const popupWorklogToggle = () => {
-    return{
-        type: 'POPUP_WORKLOG_TOGGLE_STATE',
-    }
- }
- export const getSelectedCalendarDay = (selectedCalendarDay) => {
-     return {
-         type: 'SELECTED_CALENDAR_DAY',
-         payload: {
-            selectedCalendarDay
-         }
-     }
-  }
-  export const addWorklogInSelectedDay = () => {
-      return {
-          type: 'ADD_WORKLOG_IN_SELECTED_DAY_IN_MONTH',
-          
-      }
-   }
-  
- 
 
+ export const getStartPosition = startPosition => {
+    return {
+        type: 'START_POSITION',
+        payload: {
+            startPosition
+        }
+    }
+ }
+ export const getEndPosition = endPosition => {
+    return {
+        type: 'END_POSITION',
+        payload: {
+            endPosition
+        }
+    }
+ }
+ export const getDataFromServer = monthDataBase => {
+    return {
+        type: 'GETTING_DATA_FROM_SERVER',
+        payload: {
+            monthDataBase
+        }
+    }
+ }
+
+ export const clearWorklogArray = () => {
+    return {
+        type: 'CLEAR_WORKLOG_ARRAY',
+    }
+ }
+
+ export const toolTip = toolTipTitle => {
+    return {
+        type: 'TOOLTIP_ON',
+        payload: {
+            toolTipTitle
+        }
+    }
+ }
+ 

@@ -1,0 +1,91 @@
+.googleCalendar {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+.container {
+    margin-top: 31px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+  }
+ 
+  .calendar {
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    align-items: center;
+  }
+  .titleCalendar {
+    margin-left: 38px;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 24px;
+    line-height: 144.2%;
+    color: #1e1e1e;
+    margin-right: 25px;
+  }
+  .toggler {
+    background: none;
+    border: none;
+  }
+  .calendarIcon {
+    margin-right: 63px;
+    background: none;
+    border: none;
+  }
+
+
+  .wrapper {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    margin-top: 41px;
+  }
+  .wrapperHide {
+    display: none;
+}  
+  .card{
+    display: flex;
+    flex-direction: row;
+    background: #f3f5f7;
+    margin: 10px 61px 0px 37px;
+    border-radius: 10px;
+  }
+  .statusbar {
+    align-self: center;
+    display: flex;
+    width: 3px;
+    height: 76px;
+    background: #75e1f9;
+    border-radius: 1px;
+  }
+
+  
+  
+  .item {
+    margin: 28px 0px 71px 40px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .name {
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 144.2%;
+    color: #1e1e1e;
+  }
+  
+  .time {
+    margin-top: 11px;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 144.2%;
+    color: #1E1E1E;
+    
+  }
