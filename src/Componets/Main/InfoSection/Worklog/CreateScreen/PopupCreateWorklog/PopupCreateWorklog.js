@@ -35,7 +35,8 @@ const PopupCreateWorklog = ({
     popupWorklogToggle,
     addWorklogInSelectedDay,
     toolTip,
-    toolTipToggle
+    toolTipToggle,
+    
 
 }) => {
 
@@ -148,6 +149,7 @@ const mapDispatchToProps = {
     finishTimeMinute,
     popupWorklogToggle,
     addWorklogInSelectedDay,
-    toolTip
+    toolTip,
+    
 }
 export default connect(mapStateToPRops, mapDispatchToProps)(PopupCreateWorklog)

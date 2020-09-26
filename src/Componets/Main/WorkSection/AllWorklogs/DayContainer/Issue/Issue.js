@@ -43,15 +43,17 @@ const Issue = (props) => {
                 <div className={styles.dropdownWrapper}>
                     <img src={moreVertical} alt="More menu button" />
                     <div className={mouseOverMenu ? styles.dropdown : styles.dropdownHide}>
+                       
                         <a href="#" className={styles.link} >Jira link</a>
                         <a href="#" className={styles.link} >Duplicate</a>
                         <a href="#" className={styles.link} onClick={() => {
-
                             props.addToFavorites(true)
                         }} >Add to favorite</a>
 
-                        <a href="#" className={styles.link} onClick={() => {
+                        <a href="#" className={styles.lastLink} onClick={() => {
                             props.popupDeleteToggle()
+                            
+
                         }} >Delete</a>
                     </div>
                 </div>
@@ -68,6 +70,6 @@ const mapDispatchToPRops = {
 
     getWorklogId,
     addToFavorites,
-    popupDeleteToggle
+    popupDeleteToggle 
 }
 export default connect(mapStateToProps, mapDispatchToPRops)(Issue)

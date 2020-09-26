@@ -90,6 +90,8 @@ const TimeLineBar = ({
                 <div className={styles.container} onClick={(event) => {
                     countClickPositionForTime(event)
                     popupWorklogToggle()
+                    
+                    
 
                 }}>
 
