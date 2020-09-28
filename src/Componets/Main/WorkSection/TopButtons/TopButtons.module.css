@@ -26,6 +26,8 @@
   color: #3744bd;
   outline: none;
   text-transform: uppercase;
+  
+  
 }
 .buttonCalendarActive {
   margin-left: 24px;
@@ -59,6 +61,7 @@
   font-weight: 500;
   font-size: 18px;
   line-height: 144.2%;
+  text-decoration: none;
 }
 .buttonAllActive {
   padding: 16px 32px;
@@ -71,6 +74,7 @@
   font-weight: 500;
   font-size: 18px;
   line-height: 144.2%;
+  text-decoration: none;
 }
 .buttonFavorites {
   padding: 16px 32px;
@@ -83,6 +87,7 @@
   font-weight: 500;
   font-size: 18px;
   line-height: 144.2%;
+  text-decoration: none;
 }
 
 .buttonFavoritesActive {
@@ -96,4 +101,5 @@
   font-weight: 500;
   font-size: 18px;
   line-height: 144.2%;
+  text-decoration: none;
 }
