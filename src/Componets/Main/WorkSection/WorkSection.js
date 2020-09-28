@@ -15,7 +15,7 @@ const WorkSection = () => {
         <div className={styles.workSection}>
             <div className={styles.wrapper}>
                 <TopButtons />
-                <Route path='/' component={AllWorklogs}/>
+                <Route path='/allworklogs' component={AllWorklogs}/>
                 <Route path='/favoritesWorklogs' component={FavoritesWorklogs}/>
 {/* 
                 <AllWorklogs state={state} />
