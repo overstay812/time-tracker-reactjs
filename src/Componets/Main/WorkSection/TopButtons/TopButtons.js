@@ -1,14 +1,17 @@
 import React from 'react'
 import { useState } from 'react'
 import { connect } from 'react-redux'
+import { NavLink } from 'react-router-dom'
 import Calendar from '../../../SideModules/Calendar'
 import styles from './TopButtons.module.css'
 import vector from './Vector.svg'
 
-const TopButtons = ({ toggle, state, selectedDay }) => {
+const TopButtons = ({selectedDay }) => {
 
-    let btnHandlerAll = () => state ? null : toggle()
-    let btnHandlerFavorites = () => !state ? null : toggle()
+    const [state, setState] = useState(true)
+
+    let btnHandlerAll = () => state ? null :  setState(!state)
+    let btnHandlerFavorites = () => !state ? null :  setState(!state)
 
     let [toggleCalendar, setToggleCalender] = useState(false)
     let showCalendar = () => setToggleCalender(!toggleCalendar)
@@ -28,12 +31,12 @@ const TopButtons = ({ toggle, state, selectedDay }) => {
             </button>
 
             <div className={styles.wrapper}>
-                <button className={state ? styles.buttonAllActive : styles.buttonAll} onClick={() => btnHandlerAll()}>
+                <NavLink to="./allworklogs" activeClassName className={state ? styles.buttonAllActive : styles.buttonAll} onClick={() => btnHandlerAll()}>
                     All
-                </button>
-                <button className={state? styles.buttonFavorites: styles.buttonFavoritesActive} onClick={() => btnHandlerFavorites()}>
+                </NavLink>
+                <NavLink to="./favoritesWorklogs" className={state ? styles.buttonFavorites : styles.buttonFavoritesActive} onClick={() => btnHandlerFavorites()}>
                     Favorites
-                </button>
+                </NavLink>
             </div>
             <Calendar toggleCalendar={toggleCalendar} />
         </div>

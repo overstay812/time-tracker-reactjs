@@ -3,9 +3,9 @@ import styles from './FavoritesWorklogs.module.css'
 import Issue from './Issue/Issue'
 import { connect } from 'react-redux'
 
- const FavoritesWorklogs = ({ state, favoritesState, selectedDay }) => {
+ const FavoritesWorklogs = ({favoritesState, selectedDay }) => {
     return (
-        <div className={state ? styles.hide : styles.favoritesWorklogs}>
+        <div className={styles.favoritesWorklogs}>
            
            {favoritesState.map((item, index) => {
 
