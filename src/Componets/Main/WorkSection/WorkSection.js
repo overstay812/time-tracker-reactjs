@@ -5,6 +5,7 @@ import { AllWorklogs } from './AllWorklogs/AllWorklogs'
 import FavoritesWorklogs from './FavoritesWorklogs/FavoritesWorklogs'
 import { useState } from 'react'
 import { connect } from 'react-redux'
+import { BrowserRouter, Route } from 'react-router-dom'
 
 const WorkSection = () => {
 
@@ -16,13 +17,17 @@ const WorkSection = () => {
 
     }
     return (
-        <div className={styles.workSection}>
-            <div className={styles.wrapper}>
-                <TopButtons toggle={toggleShowScreen} state={state} />
-                <AllWorklogs state={state} />
-                <FavoritesWorklogs state={state} />
+        <BrowserRouter>
+            <div className={styles.workSection}>
+                <div className={styles.wrapper}>
+                    <TopButtons toggle={toggleShowScreen} state={state} />
+                    <Route component={AllWorklogs} />
+                    <Route component={FavoritesWorklogs} />
+                    <AllWorklogs state={state} />
+                    <FavoritesWorklogs state={state} />
+                </div>
             </div>
-        </div>
+        </BrowserRouter>
     )
 }
 
