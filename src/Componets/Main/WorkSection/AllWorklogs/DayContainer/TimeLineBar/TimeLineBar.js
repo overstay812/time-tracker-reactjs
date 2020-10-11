@@ -87,13 +87,15 @@ const TimeLineBar = ({
     return (
         <div className={styles.wrapper} >
             <div className={styles.timeBar}>
-                <div className={styles.container} onClick={(event) => {
-                    countClickPositionForTime(event)
-                    popupWorklogToggle()
+                <div className={styles.container}
+//         onClick={(event) => {
+//                     countClickPositionForTime(event)
+//                     popupWorklogToggle()
                     
                     
 
-                }}>
+//                 }}
+>
 
 
                     {month.map((item, index) => {
